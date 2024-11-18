@@ -10,7 +10,7 @@ import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
  
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Manage dropdown state
  
 
@@ -332,9 +332,9 @@ const Navbar = () => {
             ) : (
               <>
                 <div className="dropdown dropdown-end mr-10">
-                  <button tabIndex={0} role="button" className="btn btn-ghost ">
+                  <Link   to="/login" className="btn btn-ghost ">
                     LogIn
-                  </button>
+                  </Link>
                   
                 </div>
               </>
