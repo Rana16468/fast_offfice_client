@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const {
@@ -32,7 +33,7 @@ const Register = () => {
           />
         </div>
 
-        
+
 
         {/* Form Section */}
         <div className="card w-full max-w-md mx-auto shadow-xl bg-base-100">
@@ -92,9 +93,9 @@ const Register = () => {
             </div>
             <p className="text-center mt-3">
               Already have an account?{" "}
-              <a className="text-accent" href="/login">
+              <Link className="text-accent" to="/login">
                 Login
-              </a>
+              </Link>
             </p>
           </form>
         </div>

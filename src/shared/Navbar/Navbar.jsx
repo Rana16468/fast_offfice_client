@@ -331,12 +331,12 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <div className="dropdown dropdown-end mr-10">
+                
                   <Link   to="/login" className="btn btn-ghost ">
                     LogIn
                   </Link>
                   
-                </div>
+                
               </>
             )}
             {/* {isAuthenticated ? (
