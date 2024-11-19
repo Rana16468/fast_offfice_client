@@ -137,7 +137,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link to="/fast_office_product" onClick={() => scrollToSection("our-work")}>
-                    Office Section
+                      Office Section
                     </Link>
                   </li>
                   <li>
@@ -165,14 +165,12 @@ const Navbar = () => {
               </div>
 
               <div className="relative inline-block text-left">
-                <div>
-                  <button
-                   
-                    className="btn btn-ghost text-xl font-bold flex items-center"
-                  >
-                    Fast Office
-                  </button>
-                </div>
+              <div className="flex items-center">
+                 <button className="btn btn-ghost text-xl font-bold">
+                   Fast Office
+                </button>
+              </div>
+
 
                 {isOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
