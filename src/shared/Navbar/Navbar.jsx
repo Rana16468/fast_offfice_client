@@ -146,7 +146,7 @@ const Navbar = () => {
                     </details>
                   </li>
                   <li>
-                    <Link onClick={() => scrollToSection("our-work")}>
+                    <Link to="/office_section" onClick={() => scrollToSection("our-work")}>
                     Office Section
                     </Link>
                   </li>
@@ -235,7 +235,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/careers" onClick={handleLinkClick}>
+                      <Link to="/office_section" onClick={handleLinkClick}>
                       Office Section
                       </Link>
                     </li>
@@ -254,7 +254,7 @@ const Navbar = () => {
               </li>
 
               <li>
-                <Link onClick={() => scrollToSection("our-work")}>Office Section</Link>
+                <Link to="/office_section" onClick={() => scrollToSection("our-work")}>Office Section</Link>
               </li>
               <li>
                 <Link onClick={() => scrollToSection("services")}>

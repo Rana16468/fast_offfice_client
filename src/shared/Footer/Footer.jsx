@@ -27,7 +27,9 @@ const Footer = () => {
 
         {/* Central Content */}
         <div className="text-center md:col-span-1">
-          <h3 className="text-2xl font-bold text-indigo-500 mb-4">Componentity</h3>
+          <h3 className="text-2xl font-bold text-indigo-500 mb-4">
+            Componentity
+          </h3>
           <p className="text-gray-400 text-sm">
             Your one-stop solution for modern and scalable components. Crafting
             experiences that matter.
@@ -36,7 +38,9 @@ const Footer = () => {
 
         {/* Contact Section */}
         <div className="space-y-4">
-          <h4 className="text-lg uppercase text-indigo-500 font-bold">Contact Us</h4>
+          <h4 className="text-lg uppercase text-indigo-500 font-bold">
+            Contact Us
+          </h4>
           <ul className="space-y-2">
             <li>
               <p>XXX XXXX, Floor 4 San Francisco, CA</p>
@@ -96,3 +100,18 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// Page Layout Wrapper
+const PageLayout = ({ children }) => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      {/* Main Content */}
+      <main className="flex-grow">{children}</main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+};
+
+export { PageLayout };

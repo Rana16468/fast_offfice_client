@@ -3,6 +3,7 @@ import Main from "../layout/Main";
 import Home from "../components/Home/Home";
 import Login from "../components/pages/login/Login";
 import Register from "../components/pages/register/Register";
+import OfficeSection from "../components/pages/OfficeSection/OfficeSection";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,7 +16,8 @@ const router = createBrowserRouter([
       {
         path:"/login",element:<Login/>
       },
-      {path:"/register",element:<Register/>}
+      {path:"/register",element:<Register/>},
+      {path:"/office_section",element:<OfficeSection/>}
     ]
     
   },
