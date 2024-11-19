@@ -22,9 +22,9 @@ const router = createBrowserRouter([
     ]
     
   },
-  
+
   {
-    path:"/dashboard",
+    path:"/fast_office_product",
     element:<Dashboard/>,
     children:[
 
