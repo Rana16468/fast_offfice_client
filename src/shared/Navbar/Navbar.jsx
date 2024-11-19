@@ -254,7 +254,7 @@ const Navbar = () => {
               </li>
 
               <li>
-                <Link to="/office_section" onClick={() => scrollToSection("our-work")}>Office Section</Link>
+                <Link to="/dashboard" onClick={() => scrollToSection("our-work")}>Office Section</Link>
               </li>
               <li>
                 <Link onClick={() => scrollToSection("services")}>
