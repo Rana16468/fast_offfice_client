@@ -21,16 +21,6 @@ const Navbar = () => {
   };
 
   
-
-
-  
-
-
-
-
-
-
-
   const detailsRef = useRef(null);
 
   const handleLinkClick = () => {

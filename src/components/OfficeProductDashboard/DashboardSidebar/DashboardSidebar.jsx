@@ -7,15 +7,19 @@ import { RiAccountBoxFill} from "react-icons/ri";
 
 import { IoCreateOutline } from "react-icons/io5";
 import { MdOutlinePostAdd, MdFormatListNumbered, MdAutoDelete, MdOutlinePassword } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
+
 import { BiLogOutCircle } from "react-icons/bi";
+import { RiLogoutCircleRLine } from "react-icons/ri";
+
+
+import { CgProfile } from "react-icons/cg";
 
 
 const DashboardSidebar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCompanyDropdownOpen, setIsCompanyDropdownOpen] = useState(false);
+  
   const detailsRef = useRef(null);
 
   const toggleSidebar = () => {
@@ -42,7 +46,7 @@ const DashboardSidebar = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-50">
       {/* Main Navigation Bar */}
-      <div className="navbar bg-gray-300 shadow-lg px-5">
+      <div className="navbar bg-[#e4dfdf31] backdrop-blur-md shadow-lg">
         <div className="navbar-start flex items-center">
           <FaBars 
             className="text-xl cursor-pointer " 
@@ -50,7 +54,7 @@ const DashboardSidebar = () => {
           />
           
           <div className="avatar">
-            <div className="w-8 h-8 rounded-full bg-white overflow-hidden p-1 ml-2">
+            <div className="w-10 h-10 rounded-full bg-white overflow-hidden p-1 ml-2">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7n0zOg9jtsSGeRzYKN4J3HC8sr1z4vy1sIw&s"
                 alt="Fast Office Logo"
@@ -65,10 +69,125 @@ const DashboardSidebar = () => {
 
         </div>
 
-        <div className="navbar-end flex items-center gap-5">
-          <button className="btn btn-outline btn-error bg-red-100 btn-sm text-black">
-            <BiLogOutCircle className="text-xl" /> Logout
-          </button>
+        <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <details >
+                  <summary>About Us</summary>
+                  <ul className="w-48 rounded-sm">
+                    <li>
+                      <Link to="/company" >
+                        Company
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/work" >
+                        How We Work
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/team" >
+                        The Team
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/office_section" >
+                      Office Section
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/licence" >
+                      Running Company 
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/terms_and_condition" >
+                        Terms And Conditions
+                      </Link>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+
+              <li>
+                <Link to="/fast_office_product" onClick={() => scrollToSection("our-work")}>Office Section</Link>
+              </li>
+              <li>
+                <Link onClick={() => scrollToSection("services")}>
+                  Services{" "}
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/contact">Contact Us</Link>
+              </li>
+            </ul>
+          </div>
+
+
+        
+
+        <div className="navbar-end flex items-center gap-2">
+        <h1 className="text-xl mr-2">
+                  Sohel Rana
+                </h1>
+        <div className="dropdown dropdown-end">
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                      <img
+                        className="h-10 w-10 rounded-full"
+                        src={
+                           "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                        }
+                        alt="profile"
+                      />
+                    </div>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      <Link to="/profile" className="justify-between">
+                        <div className="flex m-1">
+                          <CgProfile className="text-xl mr-2" />
+                          <span>Profile</span>
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/chnage_password">
+                        <div className="flex m-1">
+                          <MdOutlinePassword className="text-xl mr-2" />
+                          <span>Change Password</span>
+                        </div>
+                      </Link>
+                    </li>
+                    {/* /new_products/reset_password */}
+                    <li>
+                      <Link to="/delete_account">
+                        <div className="flex m-1">
+                          <MdAutoDelete className="text-xl mr-2" />
+                          <span>Delete Account</span>
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        
+                        className="btn btn-error btn-outline btn-sm rounded"
+                      >
+                        <RiLogoutCircleRLine className="text-xl text-gray-700" />
+                      </button>
+                    </li>
+                  </ul>
+                </div>
           
           {/* {isAuthenticated ? (
             <div className="dropdown dropdown-end">
@@ -118,18 +237,14 @@ const DashboardSidebar = () => {
 
       {/* Sidebar */}
       <section
-        className={`fixed top-0 left-0 px-3 h-full bg-gray-300 transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 px-3 h-full bg-[#e4dfdf31] transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{ width: "250px", marginTop: "65px" }}
       >
         <div className="py-5 flex justify-between items-center">
           <h1 className="text-xl font-bold">
-            {/* Fast{" "}
-            <span className="bg-orange-700 text-white px-2 rounded-lg">
-              Office
-            </span> */}
-
+          
             Our Services
           </h1>
           <FaTimes 
@@ -140,7 +255,7 @@ const DashboardSidebar = () => {
         
         <hr />
         <h2 className="text-xl font-bold mt-2 text-gray-500">USER DASHBOARD</h2>
-        <hr className="border-red-700" />
+        <hr className="border-gray-700 border-solid" />
 
         <Link to="/" className="flex gap-5 mt-5 hover:bg-black hover:text-white py-3 rounded-lg px-5">
           <TiHomeOutline className="text-2xl" />
