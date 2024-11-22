@@ -5,6 +5,7 @@ import Login from "../components/pages/login/Login";
 import Register from "../components/pages/register/Register";
 import OfficeSection from "../components/pages/OfficeSection/OfficeSection";
 import Dashboard from "../components/OfficeProductDashboard/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +19,9 @@ const router = createBrowserRouter([
         path:"/login",element:<Login/>
       },
       {path:"/register",element:<Register/>},
-      {path:"/office_section",element:<OfficeSection/>}
+      {path:"/office_section",element:<PrivateRoute>
+        <OfficeSection/>
+      </PrivateRoute>}
     ]
     
   },

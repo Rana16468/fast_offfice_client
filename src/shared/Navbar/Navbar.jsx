@@ -1,18 +1,19 @@
 
-import React, { useState,  useRef } from "react";
+import React, { useState,  useRef, useContext } from "react";
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 
 import { MdAutoDelete, MdOutlinePassword } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
+import { AuthContext } from "../../components/AuthProvider/AuthProvider";
 
 
 const Navbar = () => {
  
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Manage dropdown state
  
+  const { user, logOut } = useContext(AuthContext);
 
   
  
@@ -45,6 +46,16 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handelLogOut = () => {
+    logOut()
+      .then(() => {
+        localStorage.setItem("token", null);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
@@ -135,11 +146,19 @@ const Navbar = () => {
                       </ul>
                     </details>
                   </li>
-                  <li>
+
+                  {
+                     user?.emailVerified && user?.email ?<>
+                      <li>
                     <Link to="/fast_office_product" onClick={() => scrollToSection("our-work")}>
                       Office Section
                     </Link>
-                  </li>
+                    </li>
+                     </>: <Link to="/work" onClick={() => setIsMenuOpen(false)}>
+                            Office Section
+                          </Link>
+                  }
+                 
                   <li>
                     <Link onClick={() => scrollToSection("services")}>
                       Services{" "}
@@ -241,12 +260,23 @@ const Navbar = () => {
                 </details>
               </li>
 
-              <li>
+              {
+                 user?.emailVerified && user?.email? <>
+
+               <li>
                 <Link to="/fast_office_product" onClick={() => scrollToSection("our-work")}>Office Section</Link>
-              </li>
+               </li>
+                 </>:<li>
+                      <Link to="/office_section" onClick={handleLinkClick}>
+                      Office Section
+                      </Link>
+                    </li>
+              }
+
+             
               <li>
                 <Link onClick={() => scrollToSection("services")}>
-                  Services{" "}
+                  Services
                 </Link>
               </li>
 
@@ -255,12 +285,13 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+          
 
           <div className="navbar-end">
-            {isAuthenticated ? (
+            {user?.emailVerified && user?.email  ? (
               <>
                 <h1 className="text-xl mr-5">
-                  Sohel Rana
+                 {user?.displayName}
                 </h1>
                 <div className="dropdown dropdown-end">
                   <label
@@ -268,10 +299,11 @@ const Navbar = () => {
                     className="btn btn-ghost btn-circle avatar"
                   >
                     <div className="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                     
                       <img
                         className="h-10 w-10 rounded-full"
                         src={
-                           "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                           user?.photoURL===null?"https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg":user?.photoURL
                         }
                         alt="profile"
                       />
@@ -308,7 +340,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <button
-                        
+                         onClick={handelLogOut}
                         className="btn btn-error btn-outline btn-sm rounded"
                       >
                         <RiLogoutCircleRLine className="text-xl text-gray-700" />
