@@ -14,6 +14,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import RoutesController from "../../../utility/RoutesController";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import Loading from "../../../shared/Loading/Loading";
 
 
 const DashboardSidebar = () => {
@@ -89,6 +90,10 @@ const DashboardSidebar = () => {
 
   if(error){
     console.log(error);
+  }
+
+  if(isLoading){
+    return <Loading/>
   }
 
   let AccessRouter = [];
