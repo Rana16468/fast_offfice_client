@@ -104,7 +104,7 @@ export default Footer;
 // Page Layout Wrapper
 const PageLayout = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className=" flex flex-col">
       {/* Main Content */}
       <main className="flex-grow">{children}</main>
 
