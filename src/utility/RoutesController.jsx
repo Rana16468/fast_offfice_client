@@ -31,11 +31,6 @@ const RoutesController = () => {
             },
             {
               icon: <TiHomeOutline className="text-2xl" />,
-              name: "Bootstrapped ",
-              path: "/bootstrapped_office",
-            },
-            {
-              icon: <TiHomeOutline className="text-2xl" />,
               name: "DIY Workspace",
               path: "/diy_workspace",
             },

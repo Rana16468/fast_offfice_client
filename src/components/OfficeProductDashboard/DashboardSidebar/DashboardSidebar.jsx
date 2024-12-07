@@ -2,10 +2,8 @@
 import React, { useState, useRef, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { TiHomeOutline } from "react-icons/ti";
-import { RiAccountBoxFill} from "react-icons/ri";
-import { IoCreateOutline } from "react-icons/io5";
-import { MdOutlinePostAdd, MdFormatListNumbered, MdAutoDelete, MdOutlinePassword } from "react-icons/md";
+
+import {  MdFormatListNumbered, MdAutoDelete, MdOutlinePassword } from "react-icons/md";
 import { BiLogOutCircle } from "react-icons/bi";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
