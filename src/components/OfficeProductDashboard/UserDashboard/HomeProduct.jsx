@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../../../shared/Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const HomeProduct = () => {
   
@@ -95,9 +96,9 @@ const HomeProduct = () => {
               </a>
             </div>
             <div className="bg-blue-500 text-white text-center py-2">
-              <button className="px-4 py-2 font-semibold hover:bg-blue-700 transition-colors duration-200">
+              <Link to={`/fast_office_product/product_details/${office?._id}`} className="px-4 py-2 font-semibold hover:bg-blue-700 transition-colors duration-200">
                 Office Details
-              </button>
+              </Link>
             </div>
           </div>
         ))}

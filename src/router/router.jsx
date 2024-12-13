@@ -11,6 +11,7 @@ import ChangePassword from "../components/pages/ChangePassword/Chnagepassword";
 import DeleteAccount from "../components/pages/DeleteAccount/DeleteAccount";
 import Contact from "../components/pages/Contact/Contact";
 import HomeProduct from "../components/OfficeProductDashboard/UserDashboard/HomeProduct";
+import ProductDetails from "../components/OfficeProductDashboard/UserDashboard/ProductDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -76,6 +77,12 @@ const router = createBrowserRouter([
         path:"/fast_office_product",
         element:<PrivateRoute>
          <HomeProduct/>
+        </PrivateRoute>
+      },
+      {
+        path:"/fast_office_product/product_details/:categorieId",
+        element:<PrivateRoute>
+          <ProductDetails/>
         </PrivateRoute>
       }
 
