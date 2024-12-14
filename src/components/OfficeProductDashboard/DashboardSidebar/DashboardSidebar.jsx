@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 import {  MdFormatListNumbered, MdAutoDelete, MdOutlinePassword } from "react-icons/md";
-import { BiLogOutCircle } from "react-icons/bi";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { Userrole } from "../../../utility/Userrole";
@@ -101,6 +100,10 @@ const DashboardSidebar = () => {
       AccessRouter.push(...allRoutes.UserRoleRoute);
 
     }  break;
+
+    case Userrole.ADMIN:{
+      AccessRouter.push(...allRoutes.AdminRoleRoute); break;
+    }
   }
 
   
@@ -268,79 +271,81 @@ const DashboardSidebar = () => {
 
       {/* Sidebar */}
       <section
-       className={`fixed top-0 left-0 px-3 h-full bg-white transition-transform duration-300 ease-in-out overflow-y-auto ${
-        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-      }`}
-      style={{ width: "275px", marginTop: "65px" }}
-      >
-        <div className="py-5 flex justify-between items-center">
-          <div className="avatar">
-            <div className="w-32 h-10 rounded-full bg-white overflow-hidden p-1 ml-2">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5KuAZFQnRA02iyMkG5AnXXE-OGwJEvwUQlw&s"
-                alt="Fast Office Logo"
-                className="object-contain"
-              />
-            </div>
-           
+  className={`fixed top-0 left-0 px-3 h-full bg-white transition-transform duration-300 ease-in-out overflow-y-auto ${
+    isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+  }`}
+  style={{ width: "275px", marginTop: "65px" }}
+>
+  <div className="py-5 flex justify-between items-center">
+    <div className="avatar">
+      <div className="w-32 h-10 rounded-full bg-white overflow-hidden p-1 ml-2">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5KuAZFQnRA02iyMkG5AnXXE-OGwJEvwUQlw&s"
+          alt="Fast Office Logo"
+          className="object-contain"
+        />
+      </div>
+    </div>
+    <FaTimes className="text-xl cursor-pointer" onClick={toggleSidebar} />
+  </div>
+  <hr />
+  <h2 className="text-xl font-bold mt-2 text-gray-500">{userroll?.data?.role}</h2>
+  <hr className="border-gray-700 border-solid" />
+  {AccessRouter?.map((route, index) => (
+    <React.Fragment key={index}>
+      {/* Top-Level Links */}
+      {route.icon && route.name && route.path ? (
+        <Link
+          to={route.path}
+          className="flex gap-5 mt-5 hover:bg-black hover:text-white py-3 rounded-lg px-5"
+        >
+          {route.icon}
+          <h3>{route.name}</h3>
+        </Link>
+      ) : null}
+
+      {/* Categories */}
+      {route?.categorie?.map((category, catIndex) => (
+        <div
+          key={catIndex}
+          className="collapse group hover:bg-black hover:text-white mt-3 collapse-arrow bg-gray-100 rounded-lg shadow-lg"
+        >
+          <input
+            type="checkbox"
+            id={`category-${catIndex}`}
+            className="peer hidden"
+          />
+          <label
+            htmlFor={`category-${catIndex}`}
+            className="collapse-title flex items-center gap-3 font-semibold px-4 py-3 cursor-pointer"
+          >
+            <MdFormatListNumbered className="text-3xl" />
+            <h2 className="text-xl">{category.categorie_name}</h2>
+          </label>
+          <div className="collapse-content peer-checked:block hidden">
+            <ul className="ml-8 mt-2 space-y-3">
+              {category.categorie_routes.map((subRoute, subIndex) => (
+                <li key={subRoute?.path || subIndex}>
+                  <NavLink
+                    to={subRoute?.path}
+                    className="text-lg m-2 hover:text-red-500 transition duration-300"
+                    style={({ isActive }) => ({
+                      color: isActive ? "red" : "",
+                      textDecoration: isActive ? "underline" : "",
+                    })}
+                  >
+                    {subRoute.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </div>
-          <FaTimes className="text-xl cursor-pointer" onClick={toggleSidebar} />
         </div>
-        <hr />
-        <h2 className="text-xl font-bold mt-2 text-gray-500">
-         {userroll?.data?.role} 
-        </h2>
-        <hr className="border-gray-700 border-solid" />
+      ))}
+    </React.Fragment>
+  ))}
+</section>
 
-        {AccessRouter?.map((route, index) => (
-          <React.Fragment key={index}>
-            {/* Top-Level Links */}
-            {route.icon && route.name && route.path ? (
-              <Link
-                to={route.path}
-                className="flex gap-5 mt-5 hover:bg-black hover:text-white py-3 rounded-lg px-5"
-              >
-                {route.icon}
-                <h3>{route.name}</h3>
-              </Link>
-            ) : null}
-
-            {/* Categories */}
-            {route?.categorie?.map((category, catIndex) => (
-              <div
-                key={catIndex}
-                className="collapse group hover:bg-black hover:text-white mt-3 collapse-arrow bg-gray-100 rounded-lg shadow-lg"
-              >
-                <input type="checkbox" name={`category-${catIndex}`} />
-                <div className="collapse-title flex items-center gap-3 font-semibold px-4 py-3">
-                  <MdFormatListNumbered className="text-3xl" />
-                  <h2 className="text-xl">{category.categorie_name}</h2>
-                </div>
-                <div className="collapse-content">
-                  <ul className="ml-8 mt-2 space-y-3">
-                    {category.categorie_routes.map((subRoute, subIndex) => (
-                      <li key={subIndex}>
-                        <NavLink
-                          to={subRoute?.path}
-                          className="text-lg m-2 hover:text-red-500 transition duration-300"
-                          style={({ isActive }) => ({
-                            color: isActive ? "red" : "",
-                            textDecoration: isActive ? "underline" : "",
-                          })}
-                        >
-                          {subRoute.name}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </React.Fragment>
-        ))}
-
-       
-      </section>
       
     </div>
   );

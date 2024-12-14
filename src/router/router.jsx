@@ -11,7 +11,10 @@ import ChangePassword from "../components/pages/ChangePassword/Chnagepassword";
 import DeleteAccount from "../components/pages/DeleteAccount/DeleteAccount";
 import Contact from "../components/pages/Contact/Contact";
 import HomeProduct from "../components/OfficeProductDashboard/UserDashboard/HomeProduct";
-import ProductDetails from "../components/OfficeProductDashboard/UserDashboard/ProductDetails";
+import ProductDetailsParents from "../components/OfficeProductDashboard/UserDashboard/ProductDetailsParents";
+import SpecificCategorie from "../components/OfficeProductDashboard/UserDashboard/SpecificCategorie/SpecificCategorie";
+import AddOfficeCategorie from "../components/OfficeProductDashboard/AdminDashboard/AddOfficeCategorie/AddOfficeCategorie";
+import AddProductDetails from "../components/OfficeProductDashboard/AdminDashboard/AddProductDetails/AddProductDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,33 +62,112 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"/contact",
-        element: <PrivateRoute>
-        <Contact/>
-      </PrivateRoute>
-      }
+        path: "/contact",
+        element: (
+          <PrivateRoute>
+            <Contact />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 
   {
     path: "/fast_office_product",
-    element: <PrivateRoute>
-      <Dashboard />
-    </PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
-        path:"/fast_office_product",
-        element:<PrivateRoute>
-         <HomeProduct/>
-        </PrivateRoute>
+        path: "/fast_office_product",
+        element: (
+          <PrivateRoute>
+            <HomeProduct />
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/fast_office_product/product_details/:categorieId",
-        element:<PrivateRoute>
-          <ProductDetails/>
-        </PrivateRoute>
-      }
-
+        path: "/fast_office_product/product_details/:categorieId",
+        element: (
+          <PrivateRoute>
+            <ProductDetailsParents />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/basic_office",
+        element: (
+          <PrivateRoute>
+            <SpecificCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/minimalist_office",
+        element: (
+          <PrivateRoute>
+            <SpecificCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/luxary_office",
+        element: (
+          <PrivateRoute>
+            <SpecificCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/bootstrapped_office",
+        element: (
+          <PrivateRoute>
+            <SpecificCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/diy_workspace",
+        element: (
+          <PrivateRoute>
+            <SpecificCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/bare_bones_office",
+        element: (
+          <PrivateRoute>
+            <SpecificCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/frugal_office",
+        element: (
+          <PrivateRoute>
+            <SpecificCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/add_office_categorie",
+        element: (
+          <PrivateRoute>
+            <AddOfficeCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/add_product_details",
+        element: (
+          <PrivateRoute>
+            <AddProductDetails />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

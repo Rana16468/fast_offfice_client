@@ -40,8 +40,7 @@ const HomeProduct = () => {
     refetch();
   }, [page, refetch]);
 
-  console.log(office_categorie)
-
+  
   const handlePageChange = async (newPage) => {
     setIsPageLoading(true);
     setPage(newPage);
