@@ -63,6 +63,9 @@ const HomeProduct = () => {
     return <p className="text-red-500">Error loading data: {error.message}</p>;
   }
 
+
+  
+
   return (
     <div className="py-10 px-5">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

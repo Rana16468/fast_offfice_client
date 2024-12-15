@@ -38,7 +38,7 @@ const AddProductDetails = () => {
           }}>
           <h2 className="text-4xl font-extrabold text-center mb-6 relative">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
-              Office Furniture Form
+              Office Furniture
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
           </h2>
@@ -131,58 +131,27 @@ const AddProductDetails = () => {
               )}
             </div>
             {/* images */}
-            <div className="form-control mb-6">
-              <label className="label font-medium text-white">
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
                 Upload Image
               </label>
-              <div
-                className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-lg bg-gradient-to-r bg-white/10 to-white/60 hover:from-gray-700/60 hover:to-gray-600/60 cursor-pointer transition duration-300"
-                onClick={() => document.getElementById("fileInput").click()}>
-                <svg
-                  className="w-14 h-14 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3 16l5.586-5.586a2 2 0 012.828 0L16 15m5 5h-6a2 2 0 01-2-2v-1m6 3l-5.586-5.586a2 2 0 00-2.828 0L8 20M16 3h6a2 2 0 012 2v6m-9 9a2 2 0 01-2-2v-6a2 2 0 012-2h6"></path>
-                </svg>
-                <p className="text-white mt-3 text-sm font-medium">
-                  Drag & drop your image here, or{" "}
-                  <span className="text-blue-400 underline">browse</span>
-                </p>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`furnitureproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
               </div>
-              <input
-                id="fileInput"
-                type="file"
-                accept="image/*"
-                {...register("furnitureproduct.image", {
-                  required: "Image is required",
-                })}
-                className="hidden "
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                      const preview = document.getElementById("imagePreview");
-                      preview.src = reader.result;
-                      preview.style.display = "block";
-                    };
-                    reader.readAsDataURL(file);
-                  }
-                }}
-              />
-              {/* Image Preview */}
-              <img
-                id="imagePreview"
-                alt="Preview"
-                className="mt-4 w-40 h-40 object-cover rounded-lg shadow-lg hidden"
-              />
-              {/* Error Message */}
+
               {errors.furnitureproduct?.image && (
                 <span className="text-sm text-red-500 mt-1">
                   {errors.furnitureproduct.image.message}
@@ -190,7 +159,7 @@ const AddProductDetails = () => {
               )}
             </div>
 
-            <h2 className="text-4xl font-extrabold text-center mb-6 relative">
+            <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
                 Standing Desk
               </span>
@@ -285,62 +254,27 @@ const AddProductDetails = () => {
             </div>
 
             {/* desk images */}
-            <div className="form-control mb-6">
-              <label className="label font-medium text-white">
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
                 Upload Image
               </label>
-              <div
-                className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-lg bg-gradient-to-r bg-white/10 to-white/60 hover:from-gray-700/60 hover:to-gray-600/60 cursor-pointer transition duration-300"
-                onClick={() =>
-                  document.getElementById("fileInputdeskproduct").click()
-                }>
-                <svg
-                  className="w-14 h-14 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3 16l5.586-5.586a2 2 0 012.828 0L16 15m5 5h-6a2 2 0 01-2-2v-1m6 3l-5.586-5.586a2 2 0 00-2.828 0L8 20M16 3h6a2 2 0 012 2v6m-9 9a2 2 0 01-2-2v-6a2 2 0 012-2h6"></path>
-                </svg>
-                <p className="text-white mt-3 text-sm font-medium">
-                  Drag & drop your image here, or{" "}
-                  <span className="text-blue-400 underline">browse</span>
-                </p>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`deskproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
               </div>
-              <input
-                id="fileInputdeskproduct"
-                type="file"
-                accept="image/*"
-                {...register("deskproduct.image", {
-                  required: "Image is required",
-                })}
-                className="hidden "
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                      const preview = document.getElementById(
-                        "imagePreviewdeskproduct"
-                      );
-                      preview.src = reader.result;
-                      preview.style.display = "block";
-                    };
-                    reader.readAsDataURL(file);
-                  }
-                }}
-              />
-              {/* Image Preview */}
-              <img
-                id="imagePreviewdeskproduct"
-                alt="Preview"
-                className="mt-4 w-40 h-40 object-cover rounded-lg shadow-lg hidden"
-              />
-              {/* Error Message */}
+
               {errors.deskproduct?.image && (
                 <span className="text-sm text-red-500 mt-1">
                   {errors.deskproduct.image.message}
@@ -348,8 +282,618 @@ const AddProductDetails = () => {
               )}
             </div>
 
-            {/* next */}
-            {/* electronics */}
+            {/* Office Electronics Product  */}
+
+            <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+                Office Electronics Product
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 ">
+              {/* electronicsproduct cetegorie */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Electronics
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Electronics"
+                  {...register("electronics", {
+                    required: "Electronics name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.electronics && "input-error"
+                  }`}
+                />
+                {errors.electronics && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.electronics.message}
+                  </span>
+                )}
+              </div>
+
+              {/* electronicsproduct name */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Electronics Product Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Desktop Compute"
+                  {...register("electronicsproduct.name", {
+                    required: "electronicsproduct name is required",
+                  })}
+                  className={`input input-bordered bg-white/30 w-full ${
+                    errors.electronicsproduct?.name && "input-error"
+                  }`}
+                />
+                {errors.electronicsproduct?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.electronicsproduct.name.message}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* electronic quentity */}
+            <div className="form-control mb-4">
+              <label className="label font-medium text-white">Quantity</label>
+              <input
+                type="number"
+                defaultValue={20}
+                {...register("electronicsproduct.quantity", {
+                  required: "Quantity is required",
+                  min: { value: 1, message: "Quantity must be at least 1" },
+                })}
+                className={`input input-bordered bg-white/30 w-full ${
+                  errors.electronicsproduct?.quantity && "input-error"
+                }`}
+              />
+              {errors.electronicsproduct?.quantity && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.electronicsproduct.quantity.message}
+                </span>
+              )}
+            </div>
+            {/* electronicsproduct discription */}
+
+            <div className="form-control mb-4">
+              <label className="label font-medium text-white">
+                Description
+              </label>
+              <textarea
+                defaultValue="Comfortable ergonomic chair with adjustable height and lumbar support."
+                {...register("electronicsproduct.description", {
+                  required: "Description is required",
+                })}
+                className={`textarea textarea-bordered w-full bg-white/50 ${
+                  errors.electronicsproduct?.description && "textarea-error"
+                }`}></textarea>
+              {errors.electronicsproduct?.description && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.electronicsproduct.description.message}
+                </span>
+              )}
+            </div>
+
+            {/* electronicsproduct images */}
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
+                Upload Image
+              </label>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`electronicsproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
+              </div>
+
+              {errors.electronicsproduct?.image && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.electronicsproduct.image.message}
+                </span>
+              )}
+            </div>
+            {/* electronicsproduct under desktopconfigration  */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* Desktop Name Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Desktop Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="TECLAST K24 Air"
+                  {...register("electronicsproduct.desktopconfigration.name", {
+                    required: "Desktop configuration name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.electronicsproduct?.desktopconfigration?.name
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.electronicsproduct?.desktopconfigration?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.electronicsproduct.desktopconfigration.name.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Desktop Model Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Desktop Model
+                </label>
+                <input
+                  type="text"
+                  defaultValue="K24 Air"
+                  {...register("electronicsproduct.desktopconfigration.model", {
+                    required: "Desktop configuration model is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.electronicsproduct?.desktopconfigration?.model
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.electronicsproduct?.desktopconfigration?.model && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.electronicsproduct.desktopconfigration.model
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* second two  field desktop configration  */}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Processor Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Intel Celeron N5095 (6M Cache, up to 3.40 GHz)"
+                  {...register(
+                    "electronicsproduct.desktopconfigration.processor",
+                    {
+                      required: "processor configuration name is required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.electronicsproduct?.desktopconfigration?.processor
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.electronicsproduct?.desktopconfigration?.processor && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.electronicsproduct.desktopconfigration.processor
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+
+              {/* Desktop Model Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Desktop Ram
+                </label>
+                <input
+                  type="text"
+                  defaultValue="8GB DDR4"
+                  {...register("electronicsproduct.desktopconfigration.ram", {
+                    required: "Desktop configuration model is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.electronicsproduct?.desktopconfigration?.ram
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.electronicsproduct?.desktopconfigration?.ram && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.electronicsproduct.desktopconfigration.ram.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* electronicsproduct under desktopconfigration */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Desktop Storage
+                </label>
+                <input
+                  type="text"
+                  defaultValue="512GB SSD"
+                  {...register(
+                    "electronicsproduct.desktopconfigration.storage",
+                    {
+                      required: "processor configuration name is required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.electronicsproduct?.desktopconfigration?.storage
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.electronicsproduct?.desktopconfigration?.storage && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.electronicsproduct.desktopconfigration.storage
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+
+              {/* Desktop Model Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Desktop Display
+                </label>
+                <input
+                  type="text"
+                  defaultValue="24-inch FHD"
+                  {...register(
+                    "electronicsproduct.desktopconfigration.display",
+                    {
+                      required: "Desktop configuration model is required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.electronicsproduct?.desktopconfigration?.display
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.electronicsproduct?.desktopconfigration?.display && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.electronicsproduct.desktopconfigration.display
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* electronicsproduct under desktopconfigration */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Desktop Features
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Built-in Speaker, High Definition Audio"
+                  {...register(
+                    "electronicsproduct.desktopconfigration.features",
+                    {
+                      required: "processor configuration name is required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.electronicsproduct?.desktopconfigration?.features
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.electronicsproduct?.desktopconfigration?.features && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.electronicsproduct.desktopconfigration.features
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/*laptop product added  */}
+
+            <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+                Office Laptop ProducT
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
+            </h2>
+
+            {/* start form laptop product added  */}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* Laptop Name */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Laptop Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="name"
+                  {...register("laptopproduct.name", {
+                    required: "Laptop name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.laptopproduct?.name ? "input-error" : ""
+                  }`}
+                />
+                {errors.laptopproduct?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.laptopproduct.name.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Laptop Quantity */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Laptop Quantity
+                </label>
+                <input
+                  type="number"
+                  defaultValue={2}
+                  {...register("laptopproduct.quantity", {
+                    required: "Quantity is required",
+                    min: {
+                      value: 1,
+                      message: "Quantity must be at least 1",
+                    },
+                  })}
+                  className={`input input-bordered bg-white/30 w-full ${
+                    errors.laptopproduct?.quantity ? "input-error" : ""
+                  }`}
+                />
+                {errors.laptopproduct?.quantity && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.laptopproduct.quantity.message}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/*Laptop  Description */}
+            <div className="form-control mb-4">
+              <label className="label font-medium text-white">
+                Laptop Description
+              </label>
+              <textarea
+                defaultValue="Slim and lightweight laptop ideal for professionals on the go."
+                {...register("laptopproduct.description", {
+                  required: "Description is required",
+                })}
+                className={`textarea textarea-bordered w-full bg-white/50 ${
+                  errors.laptopproduct?.description && "textarea-error"
+                }`}></textarea>
+              {errors.laptopproduct?.description && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.laptopproduct.description.message}
+                </span>
+              )}
+            </div>
+
+            {/* Laptop images */}
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
+                Upload Image
+              </label>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`laptopproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
+              </div>
+
+              {errors.laptopproduct?.image && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.laptopproduct.image.message}
+                </span>
+              )}
+            </div>
+
+            {/* laptopproduct under laptopconfigration */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* Configuration Name Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Configuration Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Dell Latitude 5420"
+                  {...register("laptopproduct.laptopconfigration.name", {
+                    required: "Laptop configuration name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.laptopproduct?.laptopconfigration?.name
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.laptopproduct?.laptopconfigration?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.laptopproduct.laptopconfigration.name.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Laptop Processor Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Laptop Processor
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Intel Core i5 (11th Gen)"
+                  {...register("laptopproduct.laptopconfigration.processor", {
+                    required: "Processor is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.laptopproduct?.laptopconfigration?.processor
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.laptopproduct?.laptopconfigration?.processor && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.laptopproduct.laptopconfigration.processor.message}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* Configuration Name Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Laptop Ram
+                </label>
+                <input
+                  type="text"
+                  defaultValue="16GB DDR4"
+                  {...register("laptopproduct.laptopconfigration.ram", {
+                    required: "Laptop ram configuration name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.laptopproduct?.laptopconfigration?.ram
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.laptopproduct?.laptopconfigration?.ram && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.laptopproduct.laptopconfigration.ram.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Laptop Processor Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Laptop Storage
+                </label>
+                <input
+                  type="text"
+                  defaultValue="512GB SSD"
+                  {...register("laptopproduct.laptopconfigration.storage", {
+                    required: "Laptop storage is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.laptopproduct?.laptopconfigration?.storage
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.laptopproduct?.laptopconfigration?.storage && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.laptopproduct.laptopconfigration.storage.message}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* Configuration Name Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Laptop Display
+                </label>
+                <input
+                  type="text"
+                  defaultValue="14-inch FHD"
+                  {...register("laptopproduct.laptopconfigration.display", {
+                    required: "Laptop ram configuration name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.laptopproduct?.laptopconfigration?.display
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.laptopproduct?.laptopconfigration?.display && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.laptopproduct.laptopconfigration.display.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Laptop Processor Field */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Laptop Battery
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Up to 10 hours"
+                  {...register("laptopproduct.laptopconfigration.battery", {
+                    required: "Laptop battery is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.laptopproduct?.laptopconfigration?.battery
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.laptopproduct?.laptopconfigration?.battery && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.laptopproduct.laptopconfigration.battery.message}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* start office projector form  */}
+
+            <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+                Office ProjectoR
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
+            </h2>
+            {/* started */}
+
+
 
             {/* New Office Infrastructure Section */}
             <div className="form-control mb-6">

@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import Loading from "../../../../shared/Loading/Loading";
 import { toast } from "react-hot-toast";
 import SpecificCategorieDetails from "./SpecificCategorieDetails";
+
 const SpecificCategorie = () => {
   const [searchParams] = useSearchParams();
   const categorie = searchParams.get("v");
@@ -65,7 +66,8 @@ const SpecificCategorie = () => {
     console.error("Fetch error:", error);
     return <p className="text-red-500">Error loading data: {error.message}</p>;
   }
-   
+
+  
 
 
   return (
