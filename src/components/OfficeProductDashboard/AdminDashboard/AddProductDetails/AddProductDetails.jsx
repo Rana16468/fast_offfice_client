@@ -89,7 +89,6 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             {/* Quantity */}
             <div className="form-control mb-4">
               <label className="label font-medium text-white">Quantity</label>
@@ -110,7 +109,6 @@ const AddProductDetails = () => {
                 </span>
               )}
             </div>
-
             {/* Description */}
             <div className="form-control mb-4">
               <label className="label font-medium text-white">
@@ -158,14 +156,12 @@ const AddProductDetails = () => {
                 </span>
               )}
             </div>
-
             <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
                 Standing Desk
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
             </h2>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 ">
               {/* Furniture Name */}
               <div className="form-control">
@@ -211,7 +207,6 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             {/* desk quentity */}
             <div className="form-control mb-4">
               <label className="label font-medium text-white">Quantity</label>
@@ -233,7 +228,6 @@ const AddProductDetails = () => {
               )}
             </div>
             {/* desk discription */}
-
             <div className="form-control mb-4">
               <label className="label font-medium text-white">
                 Description
@@ -252,7 +246,6 @@ const AddProductDetails = () => {
                 </span>
               )}
             </div>
-
             {/* desk images */}
             <div className="flex-1">
               <label className="label font-medium text-white ">
@@ -281,16 +274,13 @@ const AddProductDetails = () => {
                 </span>
               )}
             </div>
-
             {/* Office Electronics Product  */}
-
             <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
                 Office Electronics Product
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
             </h2>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 ">
               {/* electronicsproduct cetegorie */}
               <div className="form-control">
@@ -336,7 +326,6 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             {/* electronic quentity */}
             <div className="form-control mb-4">
               <label className="label font-medium text-white">Quantity</label>
@@ -358,7 +347,6 @@ const AddProductDetails = () => {
               )}
             </div>
             {/* electronicsproduct discription */}
-
             <div className="form-control mb-4">
               <label className="label font-medium text-white">
                 Description
@@ -377,7 +365,6 @@ const AddProductDetails = () => {
                 </span>
               )}
             </div>
-
             {/* electronicsproduct images */}
             <div className="flex-1">
               <label className="label font-medium text-white ">
@@ -461,9 +448,7 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             {/* second two  field desktop configration  */}
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="form-control">
                 <label className="label font-medium text-white">
@@ -615,18 +600,14 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             {/*laptop product added  */}
-
             <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
                 Office Laptop ProducT
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
             </h2>
-
             {/* start form laptop product added  */}
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               {/* Laptop Name */}
               <div className="form-control">
@@ -676,7 +657,6 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             {/*Laptop  Description */}
             <div className="form-control mb-4">
               <label className="label font-medium text-white">
@@ -696,7 +676,6 @@ const AddProductDetails = () => {
                 </span>
               )}
             </div>
-
             {/* Laptop images */}
             <div className="flex-1">
               <label className="label font-medium text-white ">
@@ -725,7 +704,6 @@ const AddProductDetails = () => {
                 </span>
               )}
             </div>
-
             {/* laptopproduct under laptopconfigration */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               {/* Configuration Name Field */}
@@ -778,7 +756,6 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               {/* Configuration Name Field */}
               <div className="form-control">
@@ -830,7 +807,6 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               {/* Configuration Name Field */}
               <div className="form-control">
@@ -882,19 +858,999 @@ const AddProductDetails = () => {
                 )}
               </div>
             </div>
-
             {/* start office projector form  */}
-
             <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
                 Office ProjectoR
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
+            </h2>{" "}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Projector
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Projector"
+                  {...register("projector", {
+                    required: "Furniture name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.projector && "input-error"
+                  }`}
+                />
+                {errors.projector && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.projector.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Projector Name */}
+
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Office Projector Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Projector"
+                  {...register("projectorproduct.name", {
+                    required: "Projector name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.projectorproduct?.name ? "input-error" : ""
+                  }`}
+                />
+                {errors.projectorproduct?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.projectorproduct.name.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Projector Quantity */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Projector Quantity
+                </label>
+                <input
+                  type="number"
+                  defaultValue={2}
+                  {...register("projectorproduct.quantity", {
+                    required: "Quantity is required",
+                    min: {
+                      value: 1,
+                      message: "Quantity must be at least 1",
+                    },
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.projectorproduct?.quantity ? "input-error" : ""
+                  }`}
+                />
+                {errors.projectorproduct?.quantity && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.projectorproduct.quantity.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* projector description */}
+            <div className="form-control mb-4">
+              <label className="label font-medium text-white">
+                Projector Description
+              </label>
+              <textarea
+                defaultValue="Slim and lightweight projector ideal for professionals on the go."
+                {...register("projectorproduct.description", {
+                  required: "Description is required",
+                })}
+                className={`textarea textarea-bordered w-full bg-white/50 ${
+                  errors.projectorproduct?.description ? "textarea-error" : ""
+                }`}></textarea>
+              {errors.projectorproduct?.description && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.projectorproduct.description.message}
+                </span>
+              )}
+            </div>
+            {/*projector  image */}
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
+                Upload Image
+              </label>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`projectorproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
+              </div>
+
+              {errors.projectorproduct?.image && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.projectorproduct.image.message}
+                </span>
+              )}
+            </div>
+            {/* projector Under projectorconfigration started  */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* Projector Configuration Name */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Projector Configuration Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="C8 Wi-Fi"
+                  {...register("projectorproduct.projectorconfigration.name", {
+                    required: "Projector configuration name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.projectorproduct?.projectorconfigration?.name
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.projectorproduct?.projectorconfigration?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.projectorproduct.projectorconfigration.name.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Projector Model Name */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Model Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Cheerlux C8"
+                  {...register("projectorproduct.projectorconfigration.model", {
+                    required: "Model name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.projectorproduct?.projectorconfigration?.model
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.projectorproduct?.projectorconfigration?.model && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.projectorproduct.projectorconfigration.model
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Brightness
+                </label>
+                <input
+                  type="text"
+                  defaultValue="2200 lumens"
+                  {...register(
+                    "projectorproduct.projectorconfigration.brightness",
+                    {
+                      required: "brightness name is required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.projectorproduct?.projectorconfigration?.brightness
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.projectorproduct?.projectorconfigration?.brightness && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.projectorproduct.projectorconfigration.brightness
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Lamp life
+                </label>
+                <input
+                  type="text"
+                  defaultValue="50000 Hours"
+                  {...register(
+                    "projectorproduct.projectorconfigration.lamplife",
+                    {
+                      required: "lamplife name is required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.projectorproduct?.projectorconfigration?.lamplife
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.projectorproduct?.projectorconfigration?.lamplife && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.projectorproduct.projectorconfigration.lamplife
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Contrast Ratio
+                </label>
+                <input
+                  type="text"
+                  defaultValue="2000:1"
+                  {...register(
+                    "projectorproduct.projectorconfigration.contrast_ratio",
+                    {
+                      required: "contrast_ratio name is required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.projectorproduct?.projectorconfigration
+                      ?.contrast_ratio
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.projectorproduct?.projectorconfigration
+                  ?.contrast_ratio && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.projectorproduct.projectorconfigration
+                        .contrast_ratio.message
+                    }
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* officesupplies started */}
+            <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+                Office SupplieS
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Office Supplies
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Office Supplies"
+                  {...register("officesupplies", {
+                    required: "officesupplies is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.officesupplies && "input-error"
+                  }`}
+                />
+                {errors.officesupplies && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.officesupplies.message}
+                  </span>
+                )}
+              </div>
+
+              {/* officesuppliesproduct Name */}
+
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Office Supplies Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Whiteboard"
+                  {...register("officesuppliesproduct.name", {
+                    required: "officesuppliesproduct name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.officesuppliesproduct?.name ? "input-error" : ""
+                  }`}
+                />
+                {errors.officesuppliesproduct?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.officesuppliesproduct.name.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Projector Quantity */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Supplies Quantity
+                </label>
+                <input
+                  type="number"
+                  defaultValue={2}
+                  {...register("officesuppliesproduct.quantity", {
+                    required: "Quantity is required",
+                    min: {
+                      value: 1,
+                      message: "Quantity must be at least 1",
+                    },
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.officesuppliesproduct?.quantity ? "input-error" : ""
+                  }`}
+                />
+                {errors.officesuppliesproduct?.quantity && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.officesuppliesproduct.quantity.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/*description*/}
+            <div className="form-control mb-4">
+              <label className="label font-medium text-white">
+                Supplies Description
+              </label>
+              <textarea
+                defaultValue="Magnetic whiteboard with a sturdy frame and marker tray"
+                {...register("officesuppliesproduct.description", {
+                  required: "Description is required",
+                })}
+                className={`textarea textarea-bordered w-full bg-white/50 ${
+                  errors.officesuppliesproduct?.description
+                    ? "textarea-error"
+                    : ""
+                }`}></textarea>
+              {errors.officesuppliesproduct?.description && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.officesuppliesproduct.description.message}
+                </span>
+              )}
+            </div>
+            {/* image */}
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
+                Upload Image
+              </label>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`officesuppliesproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
+              </div>
+
+              {errors.officesuppliesproduct?.image && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.officesuppliesproduct.image.message}
+                </span>
+              )}
+            </div>
+            {/*---------- Printer Product ----------*/}
+            <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+                Printer ProducT
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
             </h2>
             {/* started */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Printer Product Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Office Printer"
+                  {...register("printerproduct.name", {
+                    required: "printer product is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.printerproduct?.name ? "input-error" : ""
+                  }`}
+                />
+                {errors.printerproduct?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.printerproduct?.name.message}
+                  </span>
+                )}
+              </div>
 
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Printer Product Quantity
+                </label>
+                <input
+                  type="number"
+                  defaultValue={2}
+                  {...register("printerproduct.quantity", {
+                    required: "Quantity is required",
+                    min: {
+                      value: 1,
+                      message: "Quantity must be at least 1",
+                    },
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.printerproduct?.quantity ? "input-error" : ""
+                  }`}
+                />
+                {errors.printerproduct?.quantity && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.printerproduct.quantity.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/*description*/}
+            <div className="form-control mb-4">
+              <label className="label font-medium text-white">
+                Printer Product Description
+              </label>
+              <textarea
+                defaultValue="Multi-functional office printer with scanning and copying capabilities."
+                {...register("printerproduct.description", {
+                  required: "Description is required",
+                })}
+                className={`textarea textarea-bordered w-full bg-white/50 ${
+                  errors.printerproduct?.description ? "textarea-error" : ""
+                }`}></textarea>
+              {errors.printerproduct?.description && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.printerproduct.description.message}
+                </span>
+              )}
+            </div>
+            {/* image */}
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
+                Upload Image
+              </label>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`printerproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
+              </div>
 
+              {errors.printerproduct?.image && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.printerproduct.image.message}
+                </span>
+              )}
+            </div>
+            {/* printerproduct under printerconfigration */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* Printer Configuration Name */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Printer Configuration Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="HP LaserJet Pro MFP"
+                  {...register("printerproduct.printerconfigration.name", {
+                    required: "Printer configuration name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.printerproduct?.printerconfigration?.name
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.printerproduct?.printerconfigration?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.printerproduct.printerconfigration.name.message}
+                  </span>
+                )}
+              </div>
 
+              {/* Printer Configuration Features */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Printer Configuration Features
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Print, Scan, Copy"
+                  {...register("printerproduct.printerconfigration.features", {
+                    required: "Printer configuration features are required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.printerproduct?.printerconfigration?.features
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.printerproduct?.printerconfigration?.features && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.printerproduct.printerconfigration.features.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* Printer Configuration Name */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Print Speed
+                </label>
+                <input
+                  type="text"
+                  defaultValue="30 ppm"
+                  {...register(
+                    "printerproduct.printerconfigration.printspeed",
+                    {
+                      required: "Printer configuration name is required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.printerproduct?.printerconfigration?.printspeed
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.printerproduct?.printerconfigration?.printspeed && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.printerproduct.printerconfigration.printspeed
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+
+              {/* Printer Configuration Features */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Printer Connectivity
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Wi-Fi, Ethernet, USB"
+                  {...register(
+                    "printerproduct.printerconfigration.connectivity",
+                    {
+                      required: "Printer configuration features are required",
+                    }
+                  )}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.printerproduct?.printerconfigration?.connectivity
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.printerproduct?.printerconfigration?.connectivity && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {
+                      errors.printerproduct.printerconfigration.connectivity
+                        .message
+                    }
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* stationery */}
+            <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+                Office StationerY
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Stationery
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Stationery"
+                  {...register("stationery", {
+                    required: "officesupplies is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.stationery && "input-error"
+                  }`}
+                />
+                {errors.stationery && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.stationery.message}
+                  </span>
+                )}
+              </div>
+
+              {/* stationeryproduct name*/}
+
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Stationery Product Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Stationery Set"
+                  {...register("stationeryproduct.name", {
+                    required: "stationeryproduct is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.stationeryproduct?.name ? "input-error" : ""
+                  }`}
+                />
+                {errors.stationeryproduct?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.stationeryproduct.name.message}
+                  </span>
+                )}
+              </div>
+
+              {/* Stationery Product Quantity */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Stationery Product Quantity
+                </label>
+                <input
+                  type="number"
+                  defaultValue={2}
+                  {...register("stationeryproduct.quantity", {
+                    required: "Quantity is required",
+                    min: {
+                      value: 1,
+                      message: "Quantity must be at least 1",
+                    },
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.stationeryproduct?.quantity ? "input-error" : ""
+                  }`}
+                />
+                {errors.stationeryproduct?.quantity && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.stationeryproduct.quantity.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/*description*/}
+            <div className="form-control mb-4">
+              <label className="label font-medium text-white">
+                Stationery Product Description
+              </label>
+              <textarea
+                defaultValue="Multi-functional office printer with scanning and copying capabilities."
+                {...register("stationeryproduct.description", {
+                  required: "Description is required",
+                })}
+                className={`textarea textarea-bordered w-full bg-white/50 ${
+                  errors.stationeryproduct?.description ? "textarea-error" : ""
+                }`}></textarea>
+              {errors.stationeryproduct?.description && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.stationeryproduct.description.message}
+                </span>
+              )}
+            </div>
+            {/* image */}
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
+                Upload Image
+              </label>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`stationeryproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
+              </div>
+
+              {errors.stationeryproduct?.image && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.stationeryproduct.image.message}
+                </span>
+              )}
+            </div>
+            {/* Air Conditioners */}
+            <h2 className="text-4xl font-extrabold text-center mt-2 mb-6 relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+                AC Section
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-100 blur-lg animate-pulse"></div>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">AC</label>
+                <input
+                  type="text"
+                  defaultValue="Air Conditioners"
+                  {...register("ac", {
+                    required: "officesupplies is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.ac && "input-error"
+                  }`}
+                />
+                {errors.ac && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.ac.message}
+                  </span>
+                )}
+              </div>
+
+              {/* stationeryproduct name*/}
+
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  AC Product Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Split Air Conditioner"
+                  {...register("acproduct.name", {
+                    required: "acproduct is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.acproduct?.name ? "input-error" : ""
+                  }`}
+                />
+                {errors.acproduct?.name && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.acproduct.name.message}
+                  </span>
+                )}
+              </div>
+
+              {/* AC Quantity */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  AC Quantity
+                </label>
+                <input
+                  type="number"
+                  defaultValue={10}
+                  {...register("acproduct.quantity", {
+                    required: "Quantity is required",
+                    min: {
+                      value: 1,
+                      message: "Quantity must be at least 1",
+                    },
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.acproduct?.quantity ? "input-error" : ""
+                  }`}
+                />
+                {errors.acproduct?.quantity && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.acproduct.quantity.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/*description*/}
+            <div className="form-control mb-4">
+              <label className="label font-medium text-white">
+                AC Product Description
+              </label>
+              <textarea
+                defaultValue="Energy-efficient split AC with fast cooling and low noise operation."
+                {...register("acproduct.description", {
+                  required: "Description is required",
+                })}
+                className={`textarea textarea-bordered w-full bg-white/50 ${
+                  errors.acproduct?.description ? "textarea-error" : ""
+                }`}></textarea>
+              {errors.acproduct?.description && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.acproduct.description.message}
+                </span>
+              )}
+            </div>
+            {/* image */}
+            <div className="flex-1">
+              <label className="label font-medium text-white ">
+                Upload Image
+              </label>
+              <div className="relative flex items-center justify-center w-full h-12 border-2 border-dashed border-gray-300 rounded-lg bg-white/30 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register(`acproduct.image`, {
+                    required: "Image is required",
+                  })}
+                  className="absolute inset-0 opacity-0 cursor-pointer "
+                />
+                <div className="flex flex-col items-center justify-center text-center">
+                  <p className="text-gray-600 text-sm font-medium">
+                    Drag & Drop your image here, or{" "}
+                    <span className="text-blue-500 underline">Browse</span>
+                  </p>
+                </div>
+              </div>
+
+              {errors.acproduct?.image && (
+                <span className="text-sm text-red-500 mt-1">
+                  {errors.acproduct.image.message}
+                </span>
+              )}
+            </div>
+            {/* acproduct under acconfigration */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* AC Configuration Brand */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  AC Configuration Brand
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Daikin"
+                  {...register("acproduct.acconfigration.brand", {
+                    required: "AC brand name is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.acproduct?.acconfigration?.brand ? "input-error" : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.acproduct?.acconfigration?.brand && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.acproduct.acconfigration.brand.message}
+                  </span>
+                )}
+              </div>
+
+              {/* AC Configuration Capacity */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  AC Capacity
+                </label>
+                <input
+                  type="text"
+                  defaultValue="1.5 Ton"
+                  {...register("acproduct.acconfigration.capacity", {
+                    required: "AC capacity is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.acproduct?.acconfigration?.capacity
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.acproduct?.acconfigration?.capacity && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.acproduct.acconfigration.capacity.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* energy rating and features */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* AC Configuration Energy Rating */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Energy Rating
+                </label>
+                <input
+                  type="text"
+                  defaultValue="5 Star"
+                  {...register("acproduct.acconfigration.energy_rating", {
+                    required: "Energy rating is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.acproduct?.acconfigration?.energy_rating
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.acproduct?.acconfigration?.energy_rating && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.acproduct.acconfigration.energy_rating.message}
+                  </span>
+                )}
+              </div>
+
+              {/* AC Configuration Features */}
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  AC Features
+                </label>
+                <input
+                  type="text"
+                  defaultValue="Inverter Technology, Auto Clean, Wi-Fi Control"
+                  {...register("acproduct.acconfigration.features", {
+                    required: "AC features are required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.acproduct?.acconfigration?.features
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.acproduct?.acconfigration?.features && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.acproduct.acconfigration.features.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label font-medium text-white">
+                  Power Consumption
+                </label>
+                <input
+                  type="text"
+                  defaultValue="1450 W"
+                  {...register("acproduct.acconfigration.power_consumption", {
+                    required: "Power consumption is required",
+                  })}
+                  className={`input input-bordered bg-white/60 w-full ${
+                    errors.acproduct?.acconfigration?.power_consumption
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                {/* Error Message */}
+                {errors.acproduct?.acconfigration?.power_consumption && (
+                  <span className="text-sm text-red-500 mt-1">
+                    {errors.acproduct.acconfigration.power_consumption.message}
+                  </span>
+                )}
+              </div>
+            </div>
             {/* New Office Infrastructure Section */}
             <div className="form-control mb-6">
               <label className="label font-medium text-white">
@@ -968,7 +1924,6 @@ const AddProductDetails = () => {
                 + Add Room Fast Office Infastructure
               </button>
             </div>
-
             {/* Submit Button */}
             <div className="form-control flex">
               <button
