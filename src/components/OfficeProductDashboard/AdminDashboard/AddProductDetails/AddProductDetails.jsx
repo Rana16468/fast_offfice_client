@@ -4,7 +4,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { FaDeleteLeft } from "react-icons/fa6";
 const AddProductDetails = () => {
   const [searchParams] = useSearchParams();
-  const officecategorieId = searchParams.get("id");
+  // const officecategorieId = searchParams.get("id");
 
   const {
     register,
@@ -20,7 +20,48 @@ const AddProductDetails = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    
+      if (data?.furnitureproduct) {
+        data.furnitureproduct.quantity = Number(data.furnitureproduct.quantity);
+        console.log(data?.furnitureproduct?.image);
+      }
+      if (data?.deskproduct) {
+        data.deskproduct.quantity = Number(data.deskproduct.quantity);
+        console.log( data?.deskproduct?.image);
+      }
+      if (data?.electronicsproduct) {
+        data.electronicsproduct.quantity = Number(data.electronicsproduct.quantity);
+        console.log( data.electronicsproduct.image);
+      }
+      if (data?.laptopproduct) {
+        data.laptopproduct.quantity = Number(data.laptopproduct.quantity);
+        console.log(data.laptopproduct.image);
+      }
+      if (data?.projectorproduct) {
+        data.projectorproduct.quantity = Number(data.projectorproduct.quantity);
+        console.log(data.projectorproduct.image);
+      }
+      if (data?.officesuppliesproduct) {
+        data.officesuppliesproduct.quantity = Number(data.officesuppliesproduct.quantity);
+        console.log(data.officesuppliesproduct.image);
+      }
+      if (data?.printerproduct) {
+        data.printerproduct.quantity = Number(data.printerproduct.quantity);
+        console.log(data.printerproduct.image);
+      }
+      if (data?.stationeryproduct) {
+        data.stationeryproduct.quantity = Number(data.stationeryproduct.quantity);
+        console.log(data.stationeryproduct.image);
+      }
+      if (data?.acproduct) {
+        data.acproduct.quantity = Number(data.acproduct.quantity);
+        console.log(data?.acproduct?.image);
+      }
+      if(data?.officeinfrastructure){
+        console.log(data?.officeinfrastructure)
+      }
+    
+    
   };
 
   return (
