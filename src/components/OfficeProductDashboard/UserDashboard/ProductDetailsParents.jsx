@@ -12,8 +12,9 @@ const ProductDetailsParents = () => {
       data: office_product = [],
       isLoading,
       error,
+      refetch
     } = useQuery({
-      queryKey: ["office_product"],
+      queryKey: ["office_product",categorieId],
       queryFn: async () => {
         try {
           const res = await fetch(
@@ -53,7 +54,7 @@ const ProductDetailsParents = () => {
         <>
 
         {
-            !isLoading && <ProductDetails productdetails={office_product?.data?.result}/>
+            !isLoading && <ProductDetails productdetails={office_product?.data?.result} refetch={refetch}/>
         }
             
         </>

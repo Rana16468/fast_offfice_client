@@ -1,29 +1,24 @@
-import toast from "react-hot-toast";
+import ErrorPage from "../../shared/Error/ErrorPage";
 
-const PostAction = (data, url) => {
+const PostAction = async(url, selectedSpecialties) => {
 
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      authorization: `${localStorage.getItem("token")}`,
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => {
-      if (!res?.ok) {
-        throw new Error("API ERROR");
-      }
-      return res.json();
-    })
-    .then((data) => {
-      toast.success(data?.message);
-     
-
-    })
-    .catch((error) => {
-      toast.error(error?.message);
+  try{
+    const result= await fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(selectedSpecialties),
     });
+    const data=await result.json();
+    return data;
+  }
+  catch(error){
+    if(error){
+      return <ErrorPage/>
+    }
+  }
 };
 
 export default PostAction;

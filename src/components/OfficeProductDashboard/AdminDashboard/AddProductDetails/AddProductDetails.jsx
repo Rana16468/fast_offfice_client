@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useForm, useFieldArray } from "react-hook-form";
 import { FaDeleteLeft } from "react-icons/fa6";
+import OfficeGenerateImage from "../../../CommonAction/Officeproduct/OfficeGenerateImage";
+import PostAction from "../../../CommonAction/PostAction";
+import { toast } from "react-hot-toast";
+import ErrorPage from "../../../../shared/Error/ErrorPage";
+import { PRODUCT_TYPES, showSuccessMessage } from "../../../../utility/TypesOfImages";
+
 const AddProductDetails = () => {
   const [searchParams] = useSearchParams();
-  // const officecategorieId = searchParams.get("id");
+  const officecategorieId = searchParams.get("id");
 
   const {
     register,
@@ -13,55 +19,80 @@ const AddProductDetails = () => {
     formState: { errors },
   } = useForm();
 
-  // Using useFieldArray for dynamic field handling
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "officeinfrastructure", // Field name for infrastructure
+    name: "officeinfastructure", 
   });
 
-  const onSubmit = (data) => {
-    
-      if (data?.furnitureproduct) {
-        data.furnitureproduct.quantity = Number(data.furnitureproduct.quantity);
-        console.log(data?.furnitureproduct?.image);
+  const handleProductImageUpload = async (data, key) => {
+    if (!data[key]?.image) return data[key];
+
+    return {
+      ...data[key],
+      quantity: Number(data[key].quantity),
+      image: await OfficeGenerateImage(data[key].image[0]),
+    };
+  };
+
+  const handleInfrastructureImages = async (infrastructureItems) => {
+    if (!infrastructureItems) return null;
+
+    return Promise.all(
+      infrastructureItems.map(async (item) => {
+        if (!item.image) return item;
+
+        return {
+          ...item,
+          image: await OfficeGenerateImage(item.image[0]),
+        };
+      })
+    );
+  };
+  const onSubmit = async (data) => {
+    try {
+      const processedData = { ...data };
+
+      for (const type of PRODUCT_TYPES) {
+        const key = `${type}product`;
+        if (processedData[key]) {
+          processedData[key] = await handleProductImageUpload(
+            processedData,
+            key
+          );
+        }
       }
-      if (data?.deskproduct) {
-        data.deskproduct.quantity = Number(data.deskproduct.quantity);
-        console.log( data?.deskproduct?.image);
+
+      if (processedData.officeinfastructure) {
+        processedData.officeinfastructure = await handleInfrastructureImages(
+          processedData.officeinfastructure
+        );
       }
-      if (data?.electronicsproduct) {
-        data.electronicsproduct.quantity = Number(data.electronicsproduct.quantity);
-        console.log( data.electronicsproduct.image);
+
+      const officeProduct = {
+        officecategorieId,
+        ...processedData,
+      };
+      
+
+      const response = await PostAction(
+        `${
+          import.meta.env.VITE_COMMON_ROOT
+        }/api/v1/office_product/create_office_product`,
+        officeProduct
+      );
+      
+
+      if (response?.errorSources?.length >= 1) {
+        toast.error(response.message);
+        return;
       }
-      if (data?.laptopproduct) {
-        data.laptopproduct.quantity = Number(data.laptopproduct.quantity);
-        console.log(data.laptopproduct.image);
+
+      showSuccessMessage(response.message);
+    } catch (error) {
+      if (error) {
+        return <ErrorPage message={error?.message} />;
       }
-      if (data?.projectorproduct) {
-        data.projectorproduct.quantity = Number(data.projectorproduct.quantity);
-        console.log(data.projectorproduct.image);
-      }
-      if (data?.officesuppliesproduct) {
-        data.officesuppliesproduct.quantity = Number(data.officesuppliesproduct.quantity);
-        console.log(data.officesuppliesproduct.image);
-      }
-      if (data?.printerproduct) {
-        data.printerproduct.quantity = Number(data.printerproduct.quantity);
-        console.log(data.printerproduct.image);
-      }
-      if (data?.stationeryproduct) {
-        data.stationeryproduct.quantity = Number(data.stationeryproduct.quantity);
-        console.log(data.stationeryproduct.image);
-      }
-      if (data?.acproduct) {
-        data.acproduct.quantity = Number(data.acproduct.quantity);
-        console.log(data?.acproduct?.image);
-      }
-      if(data?.officeinfrastructure){
-        console.log(data?.officeinfrastructure)
-      }
-    
-    
+    }
   };
 
   return (
@@ -1905,17 +1936,17 @@ const AddProductDetails = () => {
                     </label>
                     <input
                       type="text"
-                      {...register(`officeinfrastructure[${index}].roomname`, {
+                      {...register(`officeinfastructure[${index}].roomname`, {
                         required: "Room name is required",
                       })}
                       className={`input input-bordered w-full bg-white/30 ${
-                        errors.officeinfrastructure?.[index]?.roomname &&
+                        errors.officeinfastructure?.[index]?.roomname &&
                         "input-error"
                       }`}
                     />
-                    {errors.officeinfrastructure?.[index]?.roomname && (
+                    {errors.officeinfastructure?.[index]?.roomname && (
                       <span className="text-sm text-red-500 mt-1">
-                        {errors.officeinfrastructure[index].roomname.message}
+                        {errors.officeinfastructure[index].roomname.message}
                       </span>
                     )}
                   </div>
@@ -1927,7 +1958,7 @@ const AddProductDetails = () => {
                       <input
                         type="file"
                         accept="image/*"
-                        {...register(`officeinfrastructure[${index}].image`, {
+                        {...register(`officeinfastructure[${index}].image`, {
                           required: "Image is required",
                         })}
                         className="absolute inset-0 opacity-0 cursor-pointer "
@@ -1942,9 +1973,9 @@ const AddProductDetails = () => {
                       </div>
                     </div>
 
-                    {errors.officeinfrastructure?.[index]?.image && (
+                    {errors.officeinfastructure?.[index]?.image && (
                       <span className="text-sm text-red-500 mt-1">
-                        {errors.officeinfrastructure[index].image.message}
+                        {errors.officeinfastructure[index].image.message}
                       </span>
                     )}
                   </div>

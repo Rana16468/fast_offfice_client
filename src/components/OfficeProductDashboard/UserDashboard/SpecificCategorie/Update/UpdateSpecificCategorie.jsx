@@ -86,7 +86,7 @@ const UpdateSpecificCategorie = ({ officeCategorieId, refetch }) => {
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-1 gap-6">
                     <div>
                       <label className="text-gray-700 mb-2 flex items-center">
                         Location
@@ -116,7 +116,7 @@ const UpdateSpecificCategorie = ({ officeCategorieId, refetch }) => {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-1 gap-6">
                     <div>
                       <label className="text-gray-700 mb-2 flex items-center">
                         Square Footage

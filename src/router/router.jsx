@@ -15,6 +15,8 @@ import ProductDetailsParents from "../components/OfficeProductDashboard/UserDash
 import SpecificCategorie from "../components/OfficeProductDashboard/UserDashboard/SpecificCategorie/SpecificCategorie";
 import AddOfficeCategorie from "../components/OfficeProductDashboard/AdminDashboard/AddOfficeCategorie/AddOfficeCategorie";
 import AddProductDetails from "../components/OfficeProductDashboard/AdminDashboard/AddProductDetails/AddProductDetails";
+import OfficeGallery from "../components/OfficeProductDashboard/UserDashboard/SpecificCategorie/Officegallery/OfficeGallery";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -168,6 +170,13 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path:"/fast_office_product/office_gallery/:productdetailsId",
+        element:<PrivateRoute>
+          <OfficeGallery/>
+        </PrivateRoute>
+      }
+      
     ],
   },
 ]);
