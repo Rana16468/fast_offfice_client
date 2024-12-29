@@ -6,6 +6,8 @@ import { MdOutlineBrowserUpdated } from "react-icons/md";
 import { RiDeleteBack2Line } from "react-icons/ri";
 import UpdateModalOfficeFurniture from "./SpecificCategorie/Update_Office_Product/UpdateModalOfficeFurniture";
 import UpdateModalOfficeLaptop from "./SpecificCategorie/Update_Office_Product/UpdateModalOfficeLaptop";
+import UpdateModalProjecror from "./SpecificCategorie/Update_Office_Product/UpdateModalProjecror";
+import UpdateModalPrinter from "./SpecificCategorie/Update_Office_Product/UpdateModalPrinter";
 const ProductDetails = ({ productdetails, refetch }) => {
   const userrole = Auth();
   const [productdetailsId,setProductseatilsId]=useState('');
@@ -17,6 +19,18 @@ const ProductDetails = ({ productdetails, refetch }) => {
   }
   const handelIdOfficeLaptop=(productdetailsId)=>{
     document.getElementById('laptop_modal').showModal();
+    setProductseatilsId(productdetailsId);
+  
+  };
+
+  const handelIdOfficeProjector=(productdetailsId)=>{
+    document.getElementById('update_modal_projector').showModal();
+    setProductseatilsId(productdetailsId);
+    
+  }
+
+  const handelIdOfficePrinter=async(productdetailsId)=>{
+    document.getElementById('printerproduct_modal').showModal();
     setProductseatilsId(productdetailsId);
   }
   return (
@@ -332,7 +346,7 @@ const ProductDetails = ({ productdetails, refetch }) => {
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
                             
-                            <button className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button onClick={()=>handelIdOfficeProjector(data?._id)} className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
@@ -428,7 +442,7 @@ const ProductDetails = ({ productdetails, refetch }) => {
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
                             
-                            <button className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button onClick={()=> handelIdOfficePrinter(data?._id)} className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
@@ -936,7 +950,9 @@ const ProductDetails = ({ productdetails, refetch }) => {
         {productdetails?.length === 0 && <NotFound />}
       </div>
       <UpdateModalOfficeFurniture productdetailsId={productdetailsId} refetch={refetch}/>;
-      <UpdateModalOfficeLaptop productdetailsId={productdetailsId} refetch={refetch}/>
+      <UpdateModalOfficeLaptop  productdetailsId={productdetailsId} refetch={refetch}/>
+      <UpdateModalProjecror  productdetailsId={productdetailsId} refetch={refetch}/>
+      <UpdateModalPrinter productdetailsId={productdetailsId} refetch={refetch}/>
     </>
   );
 };
