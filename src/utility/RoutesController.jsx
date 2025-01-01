@@ -114,7 +114,7 @@ const RoutesController = () => {
     {
       categorie: [
         {
-          categorie_name: "Office Categories ",
+          categorie_name: "Premium Office ",
           categorie_routes: [
             {
               icon: <TiHomeOutline className="text-2xl" />,
@@ -142,6 +142,11 @@ const RoutesController = () => {
           categorie_name: "Features",
 
           categorie_routes: [
+            {
+              icon:'',
+              name:"Users",
+              path:"/fast_office_product/all_users"
+            },
             {
               icon: <BiCategoryAlt className="text-2xl" />,
               name: "Add Categorie",

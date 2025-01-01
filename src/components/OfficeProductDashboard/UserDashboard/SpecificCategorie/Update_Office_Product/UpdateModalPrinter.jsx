@@ -39,7 +39,7 @@ const UpdateModalPrinter = ({ productdetailsId, refetch }) => {
         .then((data) => {
           if (data?.success) {
             setofficecategorieId(data?.data?.officecategorieId);
-            console.log(data?.data?.printerproduct);
+            
           }
         })
         .catch((error) => {

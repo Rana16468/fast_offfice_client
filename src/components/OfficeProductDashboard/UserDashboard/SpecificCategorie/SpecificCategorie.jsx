@@ -67,13 +67,11 @@ const SpecificCategorie = () => {
     return <p className="text-red-500">Error loading data: {error.message}</p>;
   }
 
-  
-
 
   return (
     <>
       {
-        !isLoading && <SpecificCategorieDetails office_categorie={office_categorie} handlePageChange={handlePageChange} page={page}  refetch={ refetch}/>
+        !isLoading && office_categorie?.success  && <SpecificCategorieDetails office_categorie={office_categorie} handlePageChange={handlePageChange} page={page}  refetch={ refetch}/>
       }
     </>
   );

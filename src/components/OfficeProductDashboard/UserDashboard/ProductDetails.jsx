@@ -8,31 +8,76 @@ import UpdateModalOfficeFurniture from "./SpecificCategorie/Update_Office_Produc
 import UpdateModalOfficeLaptop from "./SpecificCategorie/Update_Office_Product/UpdateModalOfficeLaptop";
 import UpdateModalProjecror from "./SpecificCategorie/Update_Office_Product/UpdateModalProjecror";
 import UpdateModalPrinter from "./SpecificCategorie/Update_Office_Product/UpdateModalPrinter";
+import UpdateModalAcProduct from "./SpecificCategorie/Update_Office_Product/UpdateModalAcProduct";
+import UpdateModalFurnitureProduct from "./SpecificCategorie/Update_Office_Product/UpdateModalFurnitureProduct";
+import UpdateModalDeskProduct from "./SpecificCategorie/Update_Office_Product/UpdateModalDeskProduct";
+import UpdateModalSuppliesProduct from "./SpecificCategorie/Update_Office_Product/UpdateModalSuppliesProduct";
+import UpdateModalStationeryProduct from "./SpecificCategorie/Update_Office_Product/UpdateModalStationeryProduct";
+import PaymentModal from "./SpecificCategorie/Payment/PaymentModal";
+
 const ProductDetails = ({ productdetails, refetch }) => {
   const userrole = Auth();
-  const [productdetailsId,setProductseatilsId]=useState('');
+  const [productdetailsId, setProductseatilsId] = useState("");
+  const [paymentInformation,setPaymentInformation]=useState({});
 
 
-  const handelIdOfficeFastructure=(productdetailsId)=>{
+  const handelIdOfficeFastructure = (productdetailsId) => {
     document.getElementById("fastructure_modal").showModal();
     setProductseatilsId(productdetailsId);
-  }
-  const handelIdOfficeLaptop=(productdetailsId)=>{
-    document.getElementById('laptop_modal').showModal();
+  };
+  const handelIdOfficeLaptop = (productdetailsId) => {
+    document.getElementById("laptop_modal").showModal();
     setProductseatilsId(productdetailsId);
-  
   };
 
-  const handelIdOfficeProjector=(productdetailsId)=>{
-    document.getElementById('update_modal_projector').showModal();
+  const handelIdOfficeProjector = (productdetailsId) => {
+    document.getElementById("update_modal_projector").showModal();
     setProductseatilsId(productdetailsId);
-    
+  };
+
+  const handelIdOfficePrinter = async (productdetailsId) => {
+    document.getElementById("printerproduct_modal").showModal();
+    setProductseatilsId(productdetailsId);
+  };
+
+  const handelIdOfficeAcProduct = async (productdetailsId) => {
+    document.getElementById("acproductmodal").showModal();
+    setProductseatilsId(productdetailsId);
+  };
+
+  const handelIdOfficeFastructureChar = async (productdetailsId) => {
+    document.getElementById("ergonomic_furnitureproduct_modal").showModal();
+    setProductseatilsId(productdetailsId);
+  };
+
+  const handelIdOfficeDeskProduct = async (productdetailsId) => {
+    document.getElementById("deskproduct_modal").showModal();
+    setProductseatilsId(productdetailsId);
+  };
+
+  const handelIdOfficeSuppliesProduct = async (productdetailsId) => {
+    document.getElementById("officesuppliesproduct_modal").showModal();
+    setProductseatilsId(productdetailsId);
+  };
+
+  const handelIdOfficeStationeryProduct = async (productdetailsId) => {
+    document.getElementById("stationeryproduct_modal").showModal();
+    setProductseatilsId(productdetailsId);
+  };
+
+  // delete_product
+
+  const handelDeleteProductDetails = async (id) => {
+    console.log(id);
+  };
+
+  const handelBooingPaymentModal=async(paymentData)=>{
+
+    document.getElementById('payment_modal').showModal();
+    setPaymentInformation(paymentData);
+
   }
 
-  const handelIdOfficePrinter=async(productdetailsId)=>{
-    document.getElementById('printerproduct_modal').showModal();
-    setProductseatilsId(productdetailsId);
-  }
   return (
     <>
       <div className="container mx-auto p-4">
@@ -136,15 +181,22 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button onClick={()=> handelIdOfficeFastructure(data?._id)} className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelIdOfficeFastructure(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -239,15 +291,20 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button onClick={()=>handelIdOfficeLaptop(data?._id)} className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() => handelIdOfficeLaptop(data?._id)}
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -345,15 +402,20 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button onClick={()=>handelIdOfficeProjector(data?._id)} className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() => handelIdOfficeProjector(data?._id)}
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -441,15 +503,20 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button onClick={()=> handelIdOfficePrinter(data?._id)} className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() => handelIdOfficePrinter(data?._id)}
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -546,15 +613,20 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() => handelIdOfficeAcProduct(data?._id)}
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -637,15 +709,22 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelIdOfficeFastructureChar(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -720,15 +799,22 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelIdOfficeDeskProduct(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -812,15 +898,22 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelIdOfficeSuppliesProduct(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -887,15 +980,22 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         {userrole?.role ===
                           `${import.meta.env.VITE_ADMIN_ROLE}` && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg">
-                            
-                            <button className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelIdOfficeStationeryProduct(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <MdOutlineBrowserUpdated className="text-3xl" />
                               <span>Update</span>
                             </button>
-                            <Link className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                            <button
+                              onClick={() =>
+                                handelDeleteProductDetails(data?._id)
+                              }
+                              className="flex items-center justify-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                               <RiDeleteBack2Line className="text-3xl" />
                               <span>Delete</span>
-                            </Link>
+                            </button>
                           </div>
                         )}
                       </div>
@@ -940,6 +1040,31 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         View on Google Maps
                       </a>
                     </div>
+                    <div className="flex justify-center">
+                      <button onClick={()=>handelBooingPaymentModal({categorieId:data?.officecategorieId?._id,
+                        productdetailsId:data?._id,
+                        office_categorie:data?.officecategorieId?.office_categorie,
+                        location:data?.officecategorieId?.location,
+                        price:data?.officecategorieId?.amount,
+                        maplocation:data?.officecategorieId?.location,
+                        squarefootage:data?.officecategorieId?.squareFootage
+                        })} className="btn btn-outline btn-sm btn-primary bg-blue-200 flex items-center gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}>
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M11 17l-4-4m0 0l4-4m-4 4h12"
+                          />
+                        </svg>
+                        Booking Payment
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -949,10 +1074,44 @@ const ProductDetails = ({ productdetails, refetch }) => {
 
         {productdetails?.length === 0 && <NotFound />}
       </div>
-      <UpdateModalOfficeFurniture productdetailsId={productdetailsId} refetch={refetch}/>;
-      <UpdateModalOfficeLaptop  productdetailsId={productdetailsId} refetch={refetch}/>
-      <UpdateModalProjecror  productdetailsId={productdetailsId} refetch={refetch}/>
-      <UpdateModalPrinter productdetailsId={productdetailsId} refetch={refetch}/>
+      <UpdateModalOfficeFurniture
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      ;
+      <UpdateModalOfficeLaptop
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      <UpdateModalProjecror
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      <UpdateModalPrinter
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      <UpdateModalAcProduct
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      <UpdateModalFurnitureProduct
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      <UpdateModalDeskProduct
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      <UpdateModalSuppliesProduct
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      <UpdateModalStationeryProduct
+        productdetailsId={productdetailsId}
+        refetch={refetch}
+      />
+      <PaymentModal paymentInformation={paymentInformation}/>
     </>
   );
 };
