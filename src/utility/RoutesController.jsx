@@ -30,7 +30,7 @@ const RoutesController = () => {
     {
       categorie: [
         {
-          categorie_name: "Office Categories ",
+          categorie_name: "Premium Office ",
           categorie_routes: [
             {
               icon: <TiHomeOutline className="text-2xl" />,
@@ -60,8 +60,8 @@ const RoutesController = () => {
           categorie_routes: [
             {
               icon: "",
-              name: "My Collection",
-              path: "/my_collection",
+              name: "My Payment Laser",
+              path: "/fast_office_product/my_payment_laser",
             },
             {
               icon: "",
@@ -80,7 +80,7 @@ const RoutesController = () => {
     {
       icon: <TiHomeOutline className="text-2xl" />,
       name: "Dashboard",
-      path: "/",
+      path: "/fast_office_product/user_dashboard",
     },
   ];
 
@@ -88,7 +88,7 @@ const RoutesController = () => {
     {
       icon: <TiHomeOutline className="text-2xl" />,
       name: "Dashboard",
-      path: "/",
+      path: "/fast_office_product/admin_dashboard",
     },
     {
       icon: <BiCategoryAlt className="text-2xl" />,
@@ -152,12 +152,16 @@ const RoutesController = () => {
               name: "Add Categorie",
               path: `/fast_office_product/add_office_categorie`,
             },
-          
+            {
+              icon:"",
+              name:"Buy Product",
+              path:"/fast_office_product/selling_specific_categorie"
 
+            },
             {
               icon: "",
               name: "Payment Details",
-              path: "/payment_details",
+              path: "/fast_office_product/all_payment_list",
             },
             {
               icon: "",

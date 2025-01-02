@@ -17,6 +17,14 @@ import AddOfficeCategorie from "../components/OfficeProductDashboard/AdminDashbo
 import AddProductDetails from "../components/OfficeProductDashboard/AdminDashboard/AddProductDetails/AddProductDetails";
 import OfficeGallery from "../components/OfficeProductDashboard/UserDashboard/SpecificCategorie/Officegallery/OfficeGallery";
 import AllUsers from "../components/OfficeProductDashboard/AdminDashboard/Users/AllUsers";
+import PaymentStatus from "../components/OfficeProductDashboard/UserDashboard/SpecificCategorie/Payment/PaymentStatus";
+import SellingSpecificCategorie from "../components/OfficeProductDashboard/AdminDashboard/SellingOfficeProduct/SellingSpecificCategorie";
+import SellingProductDetailsParents from "../components/OfficeProductDashboard/AdminDashboard/SellingOfficeProduct/Sellling_Product_Details/SellingProductDetailsParents";
+import PaymentDisplay from "../components/OfficeProductDashboard/AdminDashboard/Payment/PaymentDisplay";
+import SpecificProductCategorie from "../components/OfficeProductDashboard/AdminDashboard/Payment/SpecificProductCategorie";
+import PaymentLaser from "../components/OfficeProductDashboard/UserDashboard/PaymentLaser/PaymentLaser";
+import UserDashboard from "../components/OfficeProductDashboard/UserDashboard/UserDashboard";
+import AdminDashboard from "../components/OfficeProductDashboard/AdminDashboard/AdminDashboard";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +77,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Contact />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/payment",
+        element: (
+          <PrivateRoute>
+            <PaymentStatus />
           </PrivateRoute>
         ),
       },
@@ -172,15 +188,73 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"/fast_office_product/office_gallery/:productdetailsId",
-        element:<PrivateRoute>
-          <OfficeGallery/>
-        </PrivateRoute>
+        path: "/fast_office_product/office_gallery/:productdetailsId",
+        element: (
+          <PrivateRoute>
+            <OfficeGallery />
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/fast_office_product/all_users",
+        path: "/fast_office_product/all_users",
+        element: (
+          <PrivateRoute>
+            <AllUsers />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/selling_specific_categorie",
+        element: (
+          <PrivateRoute>
+            <SellingSpecificCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/selling_product_details_parents/:categorieId",
+        element: (
+          <PrivateRoute>
+            <SellingProductDetailsParents />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/all_payment_list",
+        element: (
+          <PrivateRoute>
+            <PaymentDisplay />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/specific_office_categorie/:categorieId",
+        element: (
+          <PrivateRoute>
+            <SpecificProductCategorie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/my_payment_laser",
+        element: (
+          <PrivateRoute>
+            <PaymentLaser />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/user_dashboard",
+        element: (
+          <PrivateRoute>
+            <UserDashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path:"/fast_office_product/admin_dashboard",
         element:<PrivateRoute>
-          <AllUsers/>
+          < AdminDashboard/>
         </PrivateRoute>
       }
     ],
