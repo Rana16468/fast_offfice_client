@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Loading from "../../../../shared/Loading/Loading";
-import { toast } from "react-hot-toast";
 import SpecificCategorieDetails from "./SpecificCategorieDetails";
 
 const SpecificCategorie = () => {

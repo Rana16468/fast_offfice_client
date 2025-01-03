@@ -1,15 +1,24 @@
-
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CiFacebook } from "react-icons/ci";
 import { FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import PostAction from "../../CommonAction/PostAction";
+import toast from "react-hot-toast";
+import { showSuccessMessage } from "../../../utility/TypesOfImages";
+import ErrorPage from "../../../shared/Error/ErrorPage";
+
 const schema = z.object({
   first_name: z.string().min(1, "First name is required"),
   last_name: z.string().min(1, "Last name is required"),
   email: z.string().email("Invalid email address"),
+  phoneNumber: z
+    .string()
+    .min(11, "Phone number must be at least 10 digits")
+    .regex(/^\d+$/, "Phone number must contain only numbers"),
   subject: z.string().min(1, "Subject is required"),
   message: z
     .string()
@@ -20,25 +29,53 @@ const schema = z.object({
 const Contact = () => {
   const [formStatus, setFormStatus] = useState(null);
 
+  const { user } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors, touchedFields },
+    reset,
   } = useForm({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    setFormStatus("success");
-    setTimeout(() => setFormStatus(null), 3000); // Clear status after 3 seconds
+  const onSubmit = async (data) => {
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const districtName = userTimeZone.split("/")[1] || "Unknown";
+
+    const senddata = {
+      name: data?.first_name?.concat(" ").concat(data?.last_name),
+      email: user?.email,
+      phoneNumber: data?.phoneNumber,
+      address: districtName,
+      photo: user?.photoURL,
+      subject: data?.subject,
+      message: data?.message,
+    };
+    try {
+      const response = await PostAction(
+        `${import.meta.env.VITE_COMMON_ROOT}/api/v1/contract/`,
+        senddata
+      );
+      if (response?.errorSources?.length >= 1) {
+        toast.error(response.message);
+        return;
+      }
+
+      showSuccessMessage(response.message);
+      reset();
+      setFormStatus("success");
+      setTimeout(() => setFormStatus(null), 3000);
+    } catch (error) {
+      if (error) {
+        return <ErrorPage message={error?.message} />;
+      }
+    }
   };
 
   return (
     <div className="min-h-screen  text-gray-100 p-3">
-     
-
-
       {/* Google Map Section */}
       <section className="mt-16">
         <div className="flex justify-center items-center">
@@ -48,14 +85,16 @@ const Contact = () => {
             className="w-full h-[300px] md:h-[600px] border-2 border-gray-300 rounded-lg shadow-lg"
             style={{ border: 0 }}
             allowFullScreen=""
-            loading="lazy"
-          ></iframe>
+            loading="lazy"></iframe>
         </div>
       </section>
       <header className="text-center my-10">
-        <h1 className="text-4xl font-serif text-black sm:text-5xl font-extrabold mb-5">Get in Touch</h1>
+        <h1 className="text-4xl font-serif text-black sm:text-5xl font-extrabold mb-5">
+          Get in Touch
+        </h1>
         <p className="text-lg sm:text-xl text-black">
-          We'd love to hear from you! Fill out the form below or reach out directly.
+          We'd love to hear from you! Fill out the form below or reach out
+          directly.
         </p>
       </header>
 
@@ -79,36 +118,33 @@ const Contact = () => {
               <ul className="flex space-x-4 mt-2 mb-2">
                 <li>
                   <a href="#" className="hover:text-blue-400">
-                     < CiFacebook className="text-4xl"/>
+                    <CiFacebook className="text-4xl" />
                   </a>
                 </li>
                 <li>
-                 
                   <a href="#" className="hover:text-blue-400">
-                     < FaLinkedin className="text-4xl"/>
+                    <FaLinkedin className="text-4xl" />
                   </a>
-                  
                 </li>
                 <li>
-                <a href="#" className="hover:text-blue-400">
-                     < FaXTwitter className="text-4xl"/>
+                  <a href="#" className="hover:text-blue-400">
+                    <FaXTwitter className="text-4xl" />
                   </a>
                 </li>
               </ul>
             </li>
           </ul>
-          <section >
-        <div className="flex justify-center items-center">
-          <iframe
-            title="Location Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.810222157101!2d90.410783!3d23.736174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85f9b50b70b%3A0x1060bab3d93adc1e!2sHotel%20Victory!5e0!3m2!1sen!2sbd!4v1696054791454!5m2!1sen!2sbd"
-            className="w-full h-[150px] md:h-[350px] border-2 border-gray-300 rounded-lg shadow-lg"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
-        </div>
-      </section>
+          <section>
+            <div className="flex justify-center items-center">
+              <iframe
+                title="Location Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.810222157101!2d90.410783!3d23.736174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85f9b50b70b%3A0x1060bab3d93adc1e!2sHotel%20Victory!5e0!3m2!1sen!2sbd!4v1696054791454!5m2!1sen!2sbd"
+                className="w-full h-[150px] md:h-[350px] border-2 border-gray-300 rounded-lg shadow-lg"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"></iframe>
+            </div>
+          </section>
         </section>
 
         {/* Contact Form */}
@@ -118,32 +154,44 @@ const Contact = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="w-full">
-                <label className="block text-sm font-medium mb-1">First Name</label>
+                <label className="block text-sm font-medium mb-1">
+                  First Name
+                </label>
                 <input
                   {...register("first_name")}
                   className={`w-full px-4 py-2 rounded-lg bg-gray-700 focus:ring-2 ${
-                    errors.first_name ? "focus:ring-red-500" : "focus:ring-blue-500"
+                    errors.first_name
+                      ? "focus:ring-red-500"
+                      : "focus:ring-blue-500"
                   }`}
                   type="text"
                   aria-invalid={!!errors.first_name}
                 />
                 {touchedFields.first_name && errors.first_name && (
-                  <span className="text-red-400 text-sm">{errors.first_name.message}</span>
+                  <span className="text-red-400 text-sm">
+                    {errors.first_name.message}
+                  </span>
                 )}
               </div>
 
               <div className="w-full">
-                <label className="block text-sm font-medium mb-1">Last Name</label>
+                <label className="block text-sm font-medium mb-1">
+                  Last Name
+                </label>
                 <input
                   {...register("last_name")}
                   className={`w-full px-4 py-2 rounded-lg bg-gray-700 focus:ring-2 ${
-                    errors.last_name ? "focus:ring-red-500" : "focus:ring-blue-500"
+                    errors.last_name
+                      ? "focus:ring-red-500"
+                      : "focus:ring-blue-500"
                   }`}
                   type="text"
                   aria-invalid={!!errors.last_name}
                 />
                 {touchedFields.last_name && errors.last_name && (
-                  <span className="text-red-400 text-sm">{errors.last_name.message}</span>
+                  <span className="text-red-400 text-sm">
+                    {errors.last_name.message}
+                  </span>
                 )}
               </div>
             </div>
@@ -159,7 +207,30 @@ const Contact = () => {
                 aria-invalid={!!errors.email}
               />
               {touchedFields.email && errors.email && (
-                <span className="text-red-400 text-sm">{errors.email.message}</span>
+                <span className="text-red-400 text-sm">
+                  {errors.email.message}
+                </span>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Phone Number
+              </label>
+              <input
+                {...register("phoneNumber")}
+                className={`w-full px-4 py-2 rounded-lg bg-gray-700 focus:ring-2 ${
+                  errors.phoneNumber
+                    ? "focus:ring-red-500"
+                    : "focus:ring-blue-500"
+                }`}
+                type="text"
+                aria-invalid={!!errors.phoneNumber}
+              />
+              {touchedFields.phoneNumber && errors.phoneNumber && (
+                <span className="text-red-400 text-sm">
+                  {errors.phoneNumber.message}
+                </span>
               )}
             </div>
 
@@ -174,7 +245,9 @@ const Contact = () => {
                 aria-invalid={!!errors.subject}
               />
               {touchedFields.subject && errors.subject && (
-                <span className="text-red-400 text-sm">{errors.subject.message}</span>
+                <span className="text-red-400 text-sm">
+                  {errors.subject.message}
+                </span>
               )}
             </div>
 
@@ -186,17 +259,17 @@ const Contact = () => {
                   errors.message ? "focus:ring-red-500" : "focus:ring-blue-500"
                 }`}
                 rows={5}
-                aria-invalid={!!errors.message}
-              ></textarea>
+                aria-invalid={!!errors.message}></textarea>
               {touchedFields.message && errors.message && (
-                <span className="text-red-400 text-sm">{errors.message.message}</span>
+                <span className="text-red-400 text-sm">
+                  {errors.message.message}
+                </span>
               )}
             </div>
 
             <button
               type="submit"
-              className="w-full py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-bold transition duration-300"
-            >
+              className="w-full py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-bold transition duration-300">
               Submit
             </button>
 

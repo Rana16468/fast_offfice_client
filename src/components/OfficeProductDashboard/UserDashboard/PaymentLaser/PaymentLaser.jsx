@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf";
+import NotFound from "../../../../shared/NotFound/NotFound";
 
 const PaymentLaser = () => {
   const {
@@ -93,6 +94,10 @@ const PaymentLaser = () => {
         <CreditCard className="w-6 h-6" />
         Payment Lease Records
       </h1>
+
+      {
+        my_payment_leaser?.data?.length===0 && <NotFound />
+      }
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         { !isLoading && my_payment_leaser?.success &&  my_payment_leaser?.data?.map((payment) => (

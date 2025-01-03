@@ -63,15 +63,11 @@ const RoutesController = () => {
               name: "My Payment Laser",
               path: "/fast_office_product/my_payment_laser",
             },
-            {
-              icon: "",
-              name: "Payment Details",
-              path: "/payment_details",
-            },
+          
             {
               icon: "",
               name: "Metting Schedule",
-              path: "/schedule",
+              path: "/fast_office_product/schedule",
             },
           ],
         },
@@ -81,6 +77,90 @@ const RoutesController = () => {
       icon: <TiHomeOutline className="text-2xl" />,
       name: "Dashboard",
       path: "/fast_office_product/user_dashboard",
+    },
+  ];
+
+
+  const EmployeeRoleRoute = [
+    {
+      icon: <BiCategoryAlt className="text-2xl" />,
+      name: "All Office Categorie",
+      path: `/fast_office_product`,
+    },
+
+    {
+      icon: <PiBuildingOfficeLight className="text-2xl" />,
+      name: "Basic Office",
+      path: `/fast_office_product/basic_office?v=${OfficeCategorie.basic_categorie}`,
+    },
+    {
+      icon: <TbBrandOffice className="text-2xl" />,
+      name: "Minimalist Office",
+      path: `/fast_office_product/minimalist_office?v=${OfficeCategorie.minimalist_categorie}`,
+    },
+    {
+      icon: <HiOutlineBuildingOffice className="text-2xl" />,
+      name: "Luxury Office",
+      path: `/fast_office_product/luxary_office?v=${OfficeCategorie.luxury_categorie}`,
+    },
+    {
+      categorie: [
+        {
+          categorie_name: "Premium Office ",
+          categorie_routes: [
+            {
+              icon: <TiHomeOutline className="text-2xl" />,
+              name: "Bootstrapped",
+              path: `/fast_office_product/bootstrapped_office?v=${OfficeCategorie.bootstrapped_categorie}`,
+            },
+            {
+              icon: <TiHomeOutline className="text-2xl" />,
+              name: "DIY Workspace",
+              path: `/fast_office_product/diy_workspace?v=${OfficeCategorie.diy_categorie}`,
+            },
+            {
+              icon: <TiHomeOutline className="text-2xl" />,
+              name: "Bare Bones ",
+              path: `/fast_office_product/bare_bones_office?v=${OfficeCategorie.barebones_categorie}`,
+            },
+            {
+              icon: <TiHomeOutline className="text-2xl" />,
+              name: "Frugal ",
+              path: `/fast_office_product/frugal_office?v=${OfficeCategorie.frugal_categorie}`,
+            },
+          ],
+        },
+        {
+          categorie_name: "Features",
+          categorie_routes: [
+            {
+              icon: "",
+              name: "My Payment Laser",
+              path: "/fast_office_product/my_payment_laser",
+            },
+            {
+              icon: "",
+              name: "Metting Schedule",
+              path: "/fast_office_product/schedule",
+            },
+            {
+              icon:"",
+              name:"Payment Laser",
+              path:"/fast_office_product/employee_payment_laser"
+            },
+            {
+              icon:"",
+              name:"Complain Box",
+              path:"/fast_office_product/complain_section"
+            }
+          ],
+        },
+      ],
+    },
+    {
+      icon: <TiHomeOutline className="text-2xl" />,
+      name: "Dashboard",
+      path: "/fast_office_product/admin_dashboard",
     },
   ];
 
@@ -166,13 +246,18 @@ const RoutesController = () => {
             {
               icon: "",
               name: "Metting Schedule",
-              path: "/schedule",
+              path: "/fast_office_product/schedule",
             },
             {
               icon: <BiCategoryAlt className="text-2xl" />,
               name: "Add Categorie",
               path: `/fast_office_product`,
             },
+            {
+              icon:"",
+              name:"Complain Box",
+              path:"/fast_office_product/complain_section"
+            }
           ],
         },
       ],
@@ -180,6 +265,7 @@ const RoutesController = () => {
   ];
   return {
     UserRoleRoute,
+    EmployeeRoleRoute,
     AdminRoleRoute,
   };
 };

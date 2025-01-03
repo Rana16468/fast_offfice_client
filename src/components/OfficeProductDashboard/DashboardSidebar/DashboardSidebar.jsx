@@ -107,10 +107,15 @@ const DashboardSidebar = () => {
       }
       break;
 
+      case Userrole.EMPLOYEE:{
+        AccessRouter.push(...allRoutes.EmployeeRoleRoute);
+
+      }break;
+
     case Userrole.ADMIN: {
       AccessRouter.push(...allRoutes.AdminRoleRoute);
-      break;
-    }
+      
+    }break;
   }
 
   return (

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import Main from "../layout/Main";
 import Home from "../components/Home/Home";
 import Login from "../components/pages/login/Login";
@@ -25,6 +26,10 @@ import SpecificProductCategorie from "../components/OfficeProductDashboard/Admin
 import PaymentLaser from "../components/OfficeProductDashboard/UserDashboard/PaymentLaser/PaymentLaser";
 import UserDashboard from "../components/OfficeProductDashboard/UserDashboard/UserDashboard";
 import AdminDashboard from "../components/OfficeProductDashboard/AdminDashboard/AdminDashboard";
+import MeetingSchedule from "../components/OfficeProductDashboard/UserDashboard/MeetingSchedule/MeetingSchedule";
+import AttenedVideoCall from "../components/Room/AttenedVideoCall";
+import EmpPaymentLaser from "../components/OfficeProductDashboard/EmployeeDashboard/EmpPaymentLaser";
+import ComplainSection from "../components/OfficeProductDashboard/EmployeeDashboard/ComplainSection";
 
 const router = createBrowserRouter([
   {
@@ -252,9 +257,39 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"/fast_office_product/admin_dashboard",
+        path: "/fast_office_product/admin_dashboard",
+        element: (
+          <PrivateRoute>
+            <AdminDashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/schedule",
+        element: (
+          <PrivateRoute>
+            <MeetingSchedule />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fast_office_product/attend_videocall",
+        element: (
+          <PrivateRoute>
+            <AttenedVideoCall />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path:"/fast_office_product/employee_payment_laser",
         element:<PrivateRoute>
-          < AdminDashboard/>
+          <EmpPaymentLaser/>
+        </PrivateRoute>
+      },
+      {
+        path:"/fast_office_product/complain_section",
+        element:<PrivateRoute>
+          <ComplainSection/>
         </PrivateRoute>
       }
     ],

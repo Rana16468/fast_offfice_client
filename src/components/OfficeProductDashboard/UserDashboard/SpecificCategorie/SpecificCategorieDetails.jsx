@@ -6,7 +6,11 @@ import { MdOutlineBrowserUpdated } from "react-icons/md";
 import { RiDeleteBack2Line } from "react-icons/ri";
 import UpdateSpecificCategorie from "./Update/UpdateSpecificCategorie";
 import Auth from "../../../../utility/auth/Auth";
-
+import PostAction from "../../../CommonAction/PostAction";
+import { showSuccessMessage } from "../../../../utility/TypesOfImages";
+import ErrorPage from "../../../../shared/Error/ErrorPage";
+import { PiVideoConferenceThin } from "react-icons/pi";
+import Swal from "sweetalert2";
 const SpecificCategorieDetails = ({
   office_categorie,
   handlePageChange,
@@ -20,7 +24,49 @@ const SpecificCategorieDetails = ({
     setOfficeCategorieId(id);
   };
 
-  const userrole= Auth();
+  const userrole = Auth();
+
+  const handelConferenceRoom = async (categorieId, names) => {
+    const name = "Conference Room".concat(" ").concat(names);
+    const email = userrole?.email;
+    const roomId = Math.floor(10000 + Math.random() * 90000);
+
+    const sendData = {
+      name,
+      email,
+      roomId,
+      categorieId,
+    };
+
+    try {
+      Swal.fire({
+        title: "Do you want to create conference room?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Create Room",
+        denyButtonText: `Don't Create`,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const response = await PostAction(
+            `${import.meta.env.VITE_COMMON_ROOT}/api/v1/room/create_room`,
+            sendData
+          );
+          if (response?.errorSources?.length >= 1) {
+            toast.error(response.message);
+            return;
+          }
+
+          showSuccessMessage(response.message);
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    } catch (error) {
+      if (error) {
+        return <ErrorPage message={error?.message} />;
+      }
+    }
+  };
 
   return (
     <>
@@ -66,8 +112,24 @@ const SpecificCategorieDetails = ({
                     </Link>
 
                     {/* Add Icon */}
+                    {userrole?.role ===
+                      `${import.meta.env.VITE_EMPLOYEE_ROLE}` && (
+                      <>
+                        <button
+                          onClick={() =>
+                            handelConferenceRoom(
+                              office?._id,
+                              office.office_categorie
+                            )
+                          }
+                          className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                          Create Conference Room
+                        </button>
+                      </>
+                    )}
 
-                    {userrole?.role === `${import.meta.env.VITE_ADMIN_ROLE}` && (
+                    {userrole?.role ===
+                      `${import.meta.env.VITE_ADMIN_ROLE}` && (
                       <>
                         <Link
                           to={`/fast_office_product/add_product_details?id=${office?._id}`}
@@ -86,6 +148,17 @@ const SpecificCategorieDetails = ({
                         <Link className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                           <RiDeleteBack2Line className="text-xl" />
                         </Link>
+
+                        <button
+                          onClick={() =>
+                            handelConferenceRoom(
+                              office?._id,
+                              office.office_categorie
+                            )
+                          }
+                          className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                          <PiVideoConferenceThin className="text-xl" />
+                        </button>
                       </>
                     )}
                   </div>
