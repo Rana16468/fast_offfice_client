@@ -30,6 +30,11 @@ import MeetingSchedule from "../components/OfficeProductDashboard/UserDashboard/
 import AttenedVideoCall from "../components/Room/AttenedVideoCall";
 import EmpPaymentLaser from "../components/OfficeProductDashboard/EmployeeDashboard/EmpPaymentLaser";
 import ComplainSection from "../components/OfficeProductDashboard/EmployeeDashboard/ComplainSection";
+import Company from "../components/pages/CompanyInfo/Company";
+import HowWeWork from "../components/pages/CompanyInfo/HowWeWork";
+import RunningCompany from "../components/pages/CompanyInfo/RunningCompany";
+import Terms_conditions from "../components/pages/CompanyInfo/Terms_conditions";
+import TheTeam from "../components/pages/CompanyInfo/TheTeam";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +44,31 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path:"/company",
+        element:<Company/>
+
+      },
+      {
+        path:"/work",
+        element:<HowWeWork/>
+
+      },
+      {
+        path:"/licence",
+        element:<RunningCompany/>
+
+      },
+      {
+        path:"/terms_and_condition",
+        element:<Terms_conditions/>
+
+      },
+      {
+        path:"/team",
+        element:<TheTeam/>
+
       },
       {
         path: "/login",
