@@ -6,7 +6,7 @@ const Company = () => {
       <div className="bg-white">
         <section className="bg-gray-100">
           <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 mt-10">
               <div className="max-w-lg">
                 <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
                   About Us
@@ -196,7 +196,7 @@ const Company = () => {
           </div>
         </section>
 
-        <section className="text-center py-12 px-4">
+        {/* <section className="text-center py-12 px-4">
           <h2 className="text-2xl font-bold">Our Healthcare Specialties</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8">
             <div className="p-4 shadow-lg rounded-lg bg-green-100 hover:bg-green-200 transition-colors">
@@ -212,9 +212,9 @@ const Company = () => {
               <h3 className="text-xl font-bold">Oncology</h3>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section className="bg-gray-100 py-12 px-4">
+        {/* <section className="bg-gray-100 py-12 px-4">
           <h2 className="text-2xl font-bold text-center">
             State-Of-The-Art Technology
           </h2>
@@ -244,9 +244,9 @@ const Company = () => {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section className="bg-green-500 text-white text-center py-12 px-4">
+        <section className="bg-green-400 text-white text-center py-12 px-4 mt-10">
           <h2 className="text-2xl font-bold">Experts Testimonials</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 max-w-5xl mx-auto">
             <div className="p-4 shadow-lg rounded-lg bg-green-600 hover:bg-green-500 transition-colors">
@@ -338,7 +338,7 @@ const Company = () => {
             </div>
           </div>
         </div>
-        <footer className="bg-green-500 text-white text-center py-8">
+        <footer className="bg-green-400 text-white text-center py-8">
           <p>&copy; Copyright . All rights reserved. Made By Binary Boats⛵</p>
         </footer>
       </section>
