@@ -18,8 +18,7 @@ import PaymentModal from "./SpecificCategorie/Payment/PaymentModal";
 const ProductDetails = ({ productdetails, refetch }) => {
   const userrole = Auth();
   const [productdetailsId, setProductseatilsId] = useState("");
-  const [paymentInformation,setPaymentInformation]=useState({});
-
+  const [paymentInformation, setPaymentInformation] = useState({});
 
   const handelIdOfficeFastructure = (productdetailsId) => {
     document.getElementById("fastructure_modal").showModal();
@@ -71,12 +70,10 @@ const ProductDetails = ({ productdetails, refetch }) => {
     console.log(id);
   };
 
-  const handelBooingPaymentModal=async(paymentData)=>{
-
-    document.getElementById('payment_modal').showModal();
+  const handelBooingPaymentModal = async (paymentData) => {
+    document.getElementById("payment_modal").showModal();
     setPaymentInformation(paymentData);
-
-  }
+  };
 
   return (
     <>
@@ -1040,31 +1037,45 @@ const ProductDetails = ({ productdetails, refetch }) => {
                         View on Google Maps
                       </a>
                     </div>
-                    <div className="flex justify-center">
-                      <button onClick={()=>handelBooingPaymentModal({categorieId:data?.officecategorieId?._id,
-                        productdetailsId:data?._id,
-                        office_categorie:data?.officecategorieId?.office_categorie,
-                        location:data?.officecategorieId?.location,
-                        price:data?.officecategorieId?.amount,
-                        maplocation:data?.officecategorieId?.location,
-                        squarefootage:data?.officecategorieId?.squareFootage
-                        })} className="btn btn-outline btn-sm btn-primary bg-blue-200 flex items-center gap-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}>
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M11 17l-4-4m0 0l4-4m-4 4h12"
-                          />
-                        </svg>
-                        Booking Payment
-                      </button>
-                    </div>
+                    {[
+                      import.meta.env.VITE_USER_ROLE,
+                      import.meta.env.VITE_EMPLOYEE_ROLE,
+                    ].includes(userrole?.role) && (
+                      <>
+                        <div className="flex justify-center">
+                          <button
+                            onClick={() =>
+                              handelBooingPaymentModal({
+                                categorieId: data?.officecategorieId?._id,
+                                productdetailsId: data?._id,
+                                office_categorie:
+                                  data?.officecategorieId?.office_categorie,
+                                location: data?.officecategorieId?.location,
+                                price: data?.officecategorieId?.amount,
+                                maplocation: data?.officecategorieId?.location,
+                                squarefootage:
+                                  data?.officecategorieId?.squareFootage,
+                              })
+                            }
+                            className="btn btn-outline btn-sm btn-primary bg-blue-200 flex items-center gap-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}>
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M11 17l-4-4m0 0l4-4m-4 4h12"
+                              />
+                            </svg>
+                            Booking Payment
+                          </button>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               )}
@@ -1111,7 +1122,7 @@ const ProductDetails = ({ productdetails, refetch }) => {
         productdetailsId={productdetailsId}
         refetch={refetch}
       />
-      <PaymentModal paymentInformation={paymentInformation}/>
+      <PaymentModal paymentInformation={paymentInformation} />
     </>
   );
 };
