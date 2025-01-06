@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FcPrevious } from "react-icons/fc";
 import { FcNext } from "react-icons/fc";
 import { ChevronDown, Building2, Star, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const images = [
@@ -162,13 +163,13 @@ const Banner = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-              <button className="px-8 py-3 bg-white text-black rounded-lg font-semibold transform transition-all hover:scale-105 hover:bg-yellow-300 flex items-center gap-2 group">
+              <Link to={`/fast_office_product`} className="px-8 py-3 bg-white text-black rounded-lg font-semibold transform transition-all hover:scale-105 hover:bg-yellow-300 flex items-center gap-2 group">
                 Explore Our Services
                 <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-              </button>
-              <button className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold transform transition-all hover:scale-105 hover:bg-white/10">
+              </Link>
+              <Link to={`/contact`} className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold transform transition-all hover:scale-105 hover:bg-white/10">
                 Contact Us
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -195,6 +196,7 @@ const Banner = () => {
         </p>
 
         {/* Product Images */}
+        <Link to="/fast_office_product">
         <div className="flex flex-wrap justify-center gap-6 mb-6">
           {currentProducts?.map((product, index) => (
             <img
@@ -204,15 +206,16 @@ const Banner = () => {
             />
           ))}
         </div>
+        </Link>
 
         {/* Buttons */}
         <div className="flex justify-center gap-4">
-          <button className="btn btn-outline bg-black  text-white">
+          <Link to={'/fast_office_product'} className="btn btn-outline bg-black  text-white">
             Learn More
-          </button>
-          <button className="btn btn-outline bg-black  text-white">
+          </Link>
+          <Link to={`/contact`} className="btn btn-outline bg-black  text-white">
             Contact Us
-          </button>
+          </Link>
         </div>
       </section>
 

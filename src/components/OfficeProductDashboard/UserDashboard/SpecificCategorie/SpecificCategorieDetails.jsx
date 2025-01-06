@@ -10,6 +10,7 @@ import PostAction from "../../../CommonAction/PostAction";
 import { showSuccessMessage } from "../../../../utility/TypesOfImages";
 import ErrorPage from "../../../../shared/Error/ErrorPage";
 import { PiVideoConferenceThin } from "react-icons/pi";
+import { Calculator } from "lucide-react";
 import Swal from "sweetalert2";
 const SpecificCategorieDetails = ({
   office_categorie,
@@ -159,6 +160,13 @@ const SpecificCategorieDetails = ({
                           className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                           <PiVideoConferenceThin className="text-xl" />
                         </button>
+
+                        <Link
+                          to={`/fast_office_product/cost_benefit_analysis/${office?._id}`}
+                          className="flex items-center gap-2 px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors duration-200">
+                          <Calculator className="w-5 h-5" />
+                          Cost Benefit Analysis
+                        </Link>
                       </>
                     )}
                   </div>

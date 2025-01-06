@@ -35,6 +35,7 @@ import HowWeWork from "../components/pages/CompanyInfo/HowWeWork";
 import RunningCompany from "../components/pages/CompanyInfo/RunningCompany";
 import Terms_conditions from "../components/pages/CompanyInfo/Terms_conditions";
 import TheTeam from "../components/pages/CompanyInfo/TheTeam";
+import CostBenefitAnalysis from "../components/OfficeProductDashboard/UserDashboard/SpecificCategorie/CostBenefitAnalysis";
 
 const router = createBrowserRouter([
   {
@@ -157,6 +158,13 @@ const router = createBrowserRouter([
             <SpecificCategorie />
           </PrivateRoute>
         ),
+      },
+      {
+        path:"/fast_office_product/cost_benefit_analysis/:officeId",
+        element:<PrivateRoute>
+          <CostBenefitAnalysis/>
+        </PrivateRoute>
+
       },
       {
         path: "/fast_office_product/minimalist_office",
