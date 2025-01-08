@@ -8,6 +8,7 @@ import { Building2, MapPin, DollarSign, Ruler } from "lucide-react";
 import { officeCategorieOptions } from "../../../../utility/Userrole";
 import toast from "react-hot-toast";
 import PostAction from "../../../CommonAction/PostAction";
+import { showSuccessMessage } from "../../../../utility/TypesOfImages";
 
 
 
@@ -61,13 +62,17 @@ const AddOfficeCategorie = () => {
   const onSubmit = async (data) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      PostAction(data,`${import.meta.env.VITE_COMMON_ROOT}/api/v1/office_categorie/create_office_categorie`);
-     
-
+      // PostAction(data,`${import.meta.env.VITE_COMMON_ROOT}/api/v1/office_categorie/create_office_categorie`);
+        const response=await PostAction(`${import.meta.env.VITE_COMMON_ROOT}/api/v1/office_categorie/create_office_categorie`,data);
+        if (response?.errorSources?.length >= 1) {
+          toast.error(response.message);
+          return;
+        }
+  
+        showSuccessMessage(response.message);
+  
       reset();
     } catch (error) {
-
-       
       toast.error("Submission Error:", error);
     }
   };
