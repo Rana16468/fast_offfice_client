@@ -8,49 +8,45 @@ const PaymentStatus = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const status = queryParams.get("status");
-  const [IsPaymentSuccess, setPaymentSuccess] = useState(false);
+  const [isPaymentSuccess, setPaymentSuccess] = useState(false);
   const [serverTransactionId, setServerTransactionId] = useState("");
-  const [IsPaymentFailed, setIsPaymentFailed] = useState(false);
+  const [isPaymentFailed, setIsPaymentFailed] = useState(false);
+  const [error, setError] = useState(null);
+
   const transactionId = localStorage.getItem(
     `${import.meta.env.VITE_TRANSACTIONID}`
   );
 
-  useEffect(() => {
-    if (status === "failed" && transactionId) {
-      fetch(
-        `${
-          import.meta.env.VITE_COMMON_ROOT
-        }/api/v1/payment/delete_failed_payment_status/${Number(transactionId)}`,
+  const handlePaymentFailure = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_COMMON_ROOT}/api/v1/payment/delete_failed_payment_status/${Number(transactionId)}`,
         {
           method: "DELETE",
           headers: {
             authorization: `${localStorage.getItem("token")}`,
           },
         }
-      )
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("API ERROR");
-          }
-          return res.json();
-        })
-        .then((data) => {
-          if (data?.success && data?.data?.acknowledged) {
-            localStorage.removeItem(`${import.meta.env.VITE_TRANSACTIONID}`);
-            setIsPaymentFailed(data?.data?.acknowledged);
-          }
-        })
-        .catch((error) => {
-          if (error) {
-            return <ErrorPage message={error?.message} />;
-          }
-        });
+      );
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      if (data?.success && data?.data?.acknowledged) {
+        localStorage.removeItem(`${import.meta.env.VITE_TRANSACTIONID}`);
+        setIsPaymentFailed(data?.data?.acknowledged);
+      }
+    } catch (error) {
+      setError(error.message);
     }
-    if (status === "success" && transactionId) {
-      fetch(
-        `${
-          import.meta.env.VITE_COMMON_ROOT
-        }/api/v1/payment/update_payment_status/${Number(transactionId)}`,
+  };
+
+  const handlePaymentSuccess = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_COMMON_ROOT}/api/v1/payment/update_payment_status/${Number(transactionId)}`,
         {
           method: "PATCH",
           headers: {
@@ -58,39 +54,62 @@ const PaymentStatus = () => {
             Authorization: `${localStorage.getItem("token")}`,
           },
         }
-      )
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`API Error: ${res.statusText}`);
-          }
-          return res.json();
-        })
-        .then((data) => {
-          if (data?.success) {
-            setPaymentSuccess(true);
-            setServerTransactionId(transactionId);
-            localStorage.removeItem(`${import.meta.env.VITE_TRANSACTIONID}`);
-          }
-        })
-        .catch((error) => {
-          if (error) {
-            return <ErrorPage message={error?.message} />;
-          }
-        });
+      );
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      if (data?.success) {
+        setPaymentSuccess(true);
+        setServerTransactionId(transactionId);
+        localStorage.removeItem(`${import.meta.env.VITE_TRANSACTIONID}`);
+      }
+    } catch (error) {
+      setError(error.message);
     }
-  }, []);
+  };
 
+  useEffect(() => {
+    if (!transactionId) return;
 
-  
+    const handlePaymentStatus = async () => {
+      switch (status) {
+        case "failed":
+          await handlePaymentFailure();
+          break;
+        case "success":
+          await handlePaymentSuccess();
+          break;
+        default:
+          setError("Invalid payment status");
+      }
+    };
 
-  return (
-    <div className="mt-16">
-      {status === "success" && IsPaymentSuccess && (
-        <PaymentSuccess tranId={serverTransactionId} />
-      )}
-      {status === "failed" && IsPaymentFailed && <PaymentFailed />}
-    </div>
-  );
+    handlePaymentStatus();
+  }, [status, transactionId]);
+
+  if (error) {
+    return <ErrorPage message={error} />;
+  }
+
+  switch (status) {
+    case "success":
+      return (
+        <div className="mt-16">
+          {isPaymentSuccess && <PaymentSuccess tranId={serverTransactionId} />}
+        </div>
+      );
+    case "failed":
+      return (
+        <div className="mt-16">
+          {isPaymentFailed && <PaymentFailed />}
+        </div>
+      );
+    default:
+      return <div className="mt-16">Invalid payment status</div>;
+  }
 };
 
 export default PaymentStatus;

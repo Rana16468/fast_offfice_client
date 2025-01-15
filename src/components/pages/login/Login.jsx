@@ -90,9 +90,11 @@ const Login = () => {
     googleLogin()
       .then(async (result) => {
         const user = result.user;
+        console.log(user);
+        console.log(user?.photoURL);
         if (user) {
           const userDetails={
-            name:user?.displayName,email:user?.email,password:import.meta.env.VITE_GOOGLE_AUTH,photo:'',role:import.meta.env.VITE_USER_ROLE,os:deviceInfo?.os?.name,
+            name:user?.displayName,email:user?.email,password:import.meta.env.VITE_GOOGLE_AUTH,photo:user?.photoURL?user?.photoURL:"",role:import.meta.env.VITE_USER_ROLE,os:deviceInfo?.os?.name,
             browser:deviceInfo?.client?.name,
             creationTime:user?.metadata?.creationTime,
             districtName,

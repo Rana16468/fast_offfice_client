@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Monitor, Smartphone, Tablet, ChevronLeft, ChevronRight, Calendar, CreditCard, User } from 'lucide-react';
+import { Monitor, Smartphone, Tablet, ChevronLeft, ChevronRight, Calendar, CreditCard, User, Search } from 'lucide-react';
 import Loading from '../../../shared/Loading/Loading';
 import ErrorPage from '../../../shared/Error/ErrorPage';
 
 const EmpPaymentLaser = () => {
   const [page, setPage] = useState(1);
   const [isPageLoading, setIsPageLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const {
     data: emp_payment_laser = [],
@@ -65,6 +66,19 @@ const EmpPaymentLaser = () => {
     }
   };
 
+  // Filter function for search
+  const filteredTransactions = emp_payment_laser?.data?.result?.filter(payment => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      payment.transactionId?.toLowerCase().includes(searchLower) ||
+      payment.userId.name?.toLowerCase().includes(searchLower) ||
+      payment.email?.toLowerCase().includes(searchLower) ||
+      payment.userId.device?.toLowerCase().includes(searchLower) ||
+      payment.userId.browser?.toLowerCase().includes(searchLower) ||
+      payment.userId.districtName?.toLowerCase().includes(searchLower)
+    );
+  });
+
   if (isLoading || isPageLoading) {
     return <Loading/>
   }
@@ -85,6 +99,31 @@ const EmpPaymentLaser = () => {
           {new Date().toLocaleDateString()}
         </div>
       </div>
+      
+      {/* Search Bar */}
+      <div className="p-6 pb-0">
+        <div className="relative max-w-xl mx-auto">
+          <input
+            type="text"
+            placeholder="Search transactions by name, email, ID, device..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-3 pl-12 pr-10 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+          />
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-gray-400" />
+          </div>
+          {searchTerm && (
+            <button
+              onClick={() => setSearchTerm('')}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+            >
+              <span className="text-sm">Clear</span>
+            </button>
+          )}
+        </div>
+      </div>
+
       <div className="p-6">
         <div className="overflow-x-auto rounded-lg border border-gray-200">
           <table className="w-full text-sm">
@@ -98,7 +137,7 @@ const EmpPaymentLaser = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {emp_payment_laser?.data?.result?.map((payment) => (
+              {filteredTransactions?.map((payment) => (
                 <tr key={payment._id} className="hover:bg-gray-50">
                   <td className="px-4 py-3">
                     <div className="flex flex-col">
@@ -154,7 +193,7 @@ const EmpPaymentLaser = () => {
         </div>
         <div className="flex justify-between items-center mt-6">
           <div className="text-sm text-gray-600">
-            Showing {emp_payment_laser?.data?.result?.length || 0} of{' '}
+            Showing {filteredTransactions?.length || 0} of{' '}
             {emp_payment_laser?.data?.meta?.total || 0} transactions
           </div>
           <div className="flex gap-2">

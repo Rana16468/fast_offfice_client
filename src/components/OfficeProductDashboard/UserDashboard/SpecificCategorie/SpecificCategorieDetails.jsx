@@ -10,8 +10,44 @@ import PostAction from "../../../CommonAction/PostAction";
 import { showSuccessMessage } from "../../../../utility/TypesOfImages";
 import ErrorPage from "../../../../shared/Error/ErrorPage";
 import { PiVideoConferenceThin } from "react-icons/pi";
-import { Calculator } from "lucide-react";
+import { Calculator, Search } from "lucide-react";
 import Swal from "sweetalert2";
+import DeleteAction from "../../../CommonAction/DeleteAction";
+
+const SearchBar = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
+
+  return (
+    <div className="max-w-xl mx-auto mb-8">
+      <form onSubmit={handleSubmit} className="relative">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search by location or category..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-3 pl-12 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+          />
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-gray-400" />
+          </div>
+          <button
+            type="submit"
+            className="absolute inset-y-0 right-0 flex items-center px-4 text-white bg-blue-500 rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+          >
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
 const SpecificCategorieDetails = ({
   office_categorie,
   handlePageChange,
@@ -19,6 +55,23 @@ const SpecificCategorieDetails = ({
   refetch,
 }) => {
   const [officeCategorieId, setOfficeCategorieId] = useState("");
+  const [filteredOffices, setFilteredOffices] = useState(null);
+
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredOffices(null);
+      return;
+    }
+
+    const searchResults = office_categorie?.data?.result.filter(office => 
+      office.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      office.office_categorie.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setFilteredOffices(searchResults);
+  };
+
+  const displayedOffices = filteredOffices || office_categorie?.data?.result;
 
   const handelUpdateCategorie = (id) => {
     document.getElementById("update_categorie").showModal();
@@ -69,13 +122,46 @@ const SpecificCategorieDetails = ({
     }
   };
 
+  const handelDeleteCategorie = async(id) => {
+    try {
+      Swal.fire({
+        title: "Do You Want To Delete Categorie?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        denyButtonText: `Don't Delete`,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const response = await DeleteAction(
+            `${import.meta.env.VITE_COMMON_ROOT}/api/v1/office_categorie/delete_office_categorie/${id}`,
+            refetch
+          );
+          if (response?.errorSources?.length >= 1) {
+            toast.error(response.message);
+            return;
+          }
+
+          showSuccessMessage(response.message);
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    } catch (error) {
+      if (error) {
+        return <ErrorPage message={error?.message} />;
+      }
+    }
+  }
+
   return (
     <>
       <div className="py-10 px-5">
-        {office_categorie?.data?.result?.length === 0 && <NotFound />}
+        <SearchBar onSearch={handleSearch} />
+        
+        {displayedOffices?.length === 0 && <NotFound />}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {office_categorie?.success &&
-            office_categorie?.data?.result.map((office, index) => (
+            displayedOffices.map((office, index) => (
               <div
                 key={index}
                 className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl hover:translate-y-[-10px]">
@@ -84,8 +170,7 @@ const SpecificCategorieDetails = ({
                     📍 {office.location}
                   </h2>
                   <p className="text-gray-600 mb-3">
-                    <strong>Square Footage:</strong> {office.squareFootage} sq
-                    ft
+                    <strong>Square Footage:</strong> {office.squareFootage} sq ft
                   </p>
                   <p className="text-gray-600 mb-3">
                     <strong>Total Cost:</strong> {office.currency}{" "}
@@ -105,16 +190,13 @@ const SpecificCategorieDetails = ({
                 </div>
                 <div className="bg-blue-500 text-white text-center py-2">
                   <div className="flex flex-wrap justify-center gap-4">
-                    {/* Office Details Link */}
                     <Link
                       to={`/fast_office_product/product_details/${office?._id}`}
                       className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                       Office Details
                     </Link>
 
-                    {/* Add Icon */}
-                    {userrole?.role ===
-                      `${import.meta.env.VITE_EMPLOYEE_ROLE}` && (
+                    {userrole?.role === `${import.meta.env.VITE_EMPLOYEE_ROLE}` && (
                       <>
                         <button
                           onClick={() =>
@@ -129,8 +211,7 @@ const SpecificCategorieDetails = ({
                       </>
                     )}
 
-                    {userrole?.role ===
-                      `${import.meta.env.VITE_ADMIN_ROLE}` && (
+                    {userrole?.role === `${import.meta.env.VITE_ADMIN_ROLE}` && (
                       <>
                         <Link
                           to={`/fast_office_product/add_product_details?id=${office?._id}`}
@@ -138,17 +219,17 @@ const SpecificCategorieDetails = ({
                           <IoIosAddCircleOutline className="text-xl" />
                         </Link>
 
-                        {/* Update Icon */}
                         <button
                           onClick={() => handelUpdateCategorie(office?._id)}
                           className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                           <MdOutlineBrowserUpdated className="text-xl" />
                         </button>
 
-                        {/* Delete Icon */}
-                        <Link className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                        <button 
+                          onClick={() => handelDeleteCategorie(office?._id)} 
+                          className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                           <RiDeleteBack2Line className="text-xl" />
-                        </Link>
+                        </button>
 
                         <button
                           onClick={() =>

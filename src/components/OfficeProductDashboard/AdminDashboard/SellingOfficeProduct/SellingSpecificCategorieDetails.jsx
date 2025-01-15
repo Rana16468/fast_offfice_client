@@ -1,8 +1,7 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { RiDeleteBack2Line } from "react-icons/ri";
+import { Search } from "lucide-react";
 import Auth from "../../../../utility/auth/Auth";
 import NotFound from "../../../../shared/NotFound/NotFound";
 
@@ -12,15 +11,36 @@ const SellingSpecificCategorieDetails = ({
   page,
   refetch,
 }) => {
-  const userrole= Auth();
+  const userrole = Auth();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter offices based on search term
+  const filteredOffices = office_categorie?.data?.result.filter(office => 
+    office.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    office.office_categorie.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <>
       <div className="py-10 px-5">
-        {office_categorie?.data?.result?.length === 0 && <NotFound />}
+        {/* Search Bar */}
+        <div className="mb-8 max-w-2xl mx-auto">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search by location or office category..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-4 py-3 pl-12 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+            />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          </div>
+        </div>
+
+        {filteredOffices?.length === 0 && <NotFound />}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {office_categorie?.success &&
-            office_categorie?.data?.result.map((office, index) => (
+            filteredOffices?.map((office, index) => (
               <div
                 key={index}
                 className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl hover:translate-y-[-10px]">
@@ -29,16 +49,13 @@ const SellingSpecificCategorieDetails = ({
                     📍 {office.location}
                   </h2>
                   <p className="text-gray-600 mb-3">
-                    <strong>Square Footage:</strong> {office.squareFootage} sq
-                    ft
+                    <strong>Square Footage:</strong> {office.squareFootage} sq ft
                   </p>
                   <p className="text-gray-600 mb-3">
-                    <strong>Total Cost:</strong> {office.currency}{" "}
-                    {office.amount}
+                    <strong>Total Cost:</strong> {office.currency} {office.amount}
                   </p>
                   <p className="text-gray-600 mb-3">
-                    <strong>Office Categorie:</strong> {office.office_categorie}{" "}
-                    Office
+                    <strong>Office Categorie:</strong> {office.office_categorie} Office
                   </p>
                   <a
                     href={office.maplocation}
@@ -50,19 +67,14 @@ const SellingSpecificCategorieDetails = ({
                 </div>
                 <div className="bg-blue-500 text-white text-center py-2">
                   <div className="flex flex-wrap justify-center gap-4">
-                    {/* Office Details Link */}
                     <Link
                       to={`/fast_office_product/selling_product_details_parents/${office?._id}`}
                       className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                       Office Details
                     </Link>
 
-                    {/* Add Icon */}
-
                     {userrole?.role === `${import.meta.env.VITE_ADMIN_ROLE}` && (
                       <>
-                       
-                        {/* Delete Icon */}
                         <Link className="flex items-center px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
                           <RiDeleteBack2Line className="text-xl" />
                         </Link>
@@ -117,7 +129,6 @@ const SellingSpecificCategorieDetails = ({
           </ul>
         </nav>
       </div>
-     
     </>
   );
 };

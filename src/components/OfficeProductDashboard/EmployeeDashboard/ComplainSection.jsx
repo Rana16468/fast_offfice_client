@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Loading from "../../../shared/Loading/Loading";
 import ErrorPage from "../../../shared/Error/ErrorPage";
@@ -11,6 +11,7 @@ import { showSuccessMessage } from "../../../utility/TypesOfImages";
 const ComplainSection = () => {
   const [page, setPage] = useState(1);
   const [isPageLoading, setIsPageLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const {
     data: allcomplainbox = [],
@@ -37,9 +38,7 @@ const ComplainSection = () => {
         const data = await res.json();
         return data;
       } catch (error) {
-        if (error) {
-          toast.error(error?.message);
-        }
+        toast.error(error?.message);
       }
     },
     enabled: true,
@@ -65,13 +64,6 @@ const ComplainSection = () => {
     }
   };
 
-  if (isLoading || isPageLoading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <ErrorPage message={error?.message} />;
-  }
-
   const handeleDeleteComplain = (id) => {
     Swal.fire({
       title: "Do you want to Delete Complain?",
@@ -93,15 +85,29 @@ const ComplainSection = () => {
 
           showSuccessMessage(response.message);
         } catch (error) {
-          if (error) {
-            return <ErrorPage message={error?.message} />;
-          }
+          return <ErrorPage message={error?.message} />;
         }
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
       }
     });
   };
+
+  const filteredComplaints =
+    allcomplainbox?.success &&
+    allcomplainbox?.data?.result.filter(
+      (complain) =>
+        complain.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        complain.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+  if (isLoading || isPageLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <ErrorPage message={error?.message} />;
+  }
 
   return (
     <>
@@ -117,7 +123,33 @@ const ComplainSection = () => {
           address them promptly.
         </p>
       </div>
+
       <div className="container mx-auto p-4">
+        <div className="relative mb-6 max-w-md mx-auto">
+          <input
+            type="text"
+            placeholder="Search by name, email..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 bg-white text-gray-800 placeholder-gray-500"
+          />
+          <div className="absolute inset-y-0 left-0 flex items-center pl-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              className="w-5 h-5 text-gray-500">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-4.35-4.35m-2.15-1.85a7 7 0 1110 0 7 7 0 01-10 0z"
+              />
+            </svg>
+          </div>
+        </div>
+
         <div className="overflow-x-auto">
           <table className="table-auto w-full border-collapse border border-gray-300">
             <thead>
@@ -134,56 +166,54 @@ const ComplainSection = () => {
               </tr>
             </thead>
             <tbody>
-              {!isLoading &&
-                allcomplainbox?.success &&
-                allcomplainbox?.data?.result.map((contact) => (
-                  <tr key={contact._id} className="text-center">
-                    <td className="border border-gray-300 px-4 py-2">
-                      <img
-                        src={contact.photo}
-                        alt={contact.name}
-                        className="w-10 h-10 rounded-full mx-auto"
-                      />
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {contact.name}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {contact.email}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {contact.phoneNumber}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {contact.address}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {contact.subject}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {contact.message}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {new Date(contact?.createdAt).toISOString("en-US")}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2 flex justify-center gap-2">
-                      <button
-                        className="text-yellow-500 hover:text-yellow-600"
-                        title="Favorite">
-                        <Star />
-                      </button>
-                      <button
-                        onClick={() => handeleDeleteComplain(contact?._id)}
-                        className="text-red-500 hover:text-red-600"
-                        title="Delete">
-                        <Trash />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+              {filteredComplaints.map((contact) => (
+                <tr key={contact._id} className="text-center">
+                  <td className="border border-gray-300 px-4 py-2">
+                    <img
+                      src={contact.photo}
+                      alt={contact.name}
+                      className="w-10 h-10 rounded-full mx-auto"
+                    />
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {contact.name}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {contact.email}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {contact.phoneNumber}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {contact.address}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {contact.subject}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {contact.message}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {new Date(contact?.createdAt).toLocaleString("en-US")}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2 flex justify-center gap-2">
+                    <button
+                      className="text-yellow-500 hover:text-yellow-600"
+                      title="Favorite">
+                      <Star />
+                    </button>
+                    <button
+                      onClick={() => handeleDeleteComplain(contact?._id)}
+                      className="text-red-500 hover:text-red-600"
+                      title="Delete">
+                      <Trash />
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
-          {/* pageination */}
+          {/* Pagination */}
           <nav aria-label="Page navigation" className="mt-6">
             <ul className="inline-flex -space-x-px text-sm">
               <li>
@@ -196,7 +226,6 @@ const ComplainSection = () => {
                   Previous
                 </button>
               </li>
-
               {Array.from(
                 { length: allcomplainbox?.data?.meta?.totalPage || 0 },
                 (_, index) => (

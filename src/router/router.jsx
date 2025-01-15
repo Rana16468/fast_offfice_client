@@ -43,7 +43,7 @@ const router = createBrowserRouter([
     element: <Main />,
     children: [
       {
-        path: "/",
+        path: "/", 
         element: <Home />,
       },
       {
@@ -126,6 +126,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  
 
   {
     path: "/fast_office_product",

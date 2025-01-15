@@ -14,6 +14,11 @@ import UpdateModalDeskProduct from "./SpecificCategorie/Update_Office_Product/Up
 import UpdateModalSuppliesProduct from "./SpecificCategorie/Update_Office_Product/UpdateModalSuppliesProduct";
 import UpdateModalStationeryProduct from "./SpecificCategorie/Update_Office_Product/UpdateModalStationeryProduct";
 import PaymentModal from "./SpecificCategorie/Payment/PaymentModal";
+import Swal from "sweetalert2";
+import DeleteAction from "../../CommonAction/DeleteAction";
+import { showSuccessMessage } from "../../../utility/TypesOfImages";
+import ErrorPage from "../../../shared/Error/ErrorPage";
+import toast from "react-hot-toast";
 
 const ProductDetails = ({ productdetails, refetch }) => {
   const userrole = Auth();
@@ -67,7 +72,33 @@ const ProductDetails = ({ productdetails, refetch }) => {
   // delete_product
 
   const handelDeleteProductDetails = async (id) => {
-    console.log(id);
+
+    try {
+      Swal.fire({
+        title: "Do You Want To Delete Hole Office Product?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        denyButtonText: `Don't Delete`,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const response = await DeleteAction(
+            `${import.meta.env.VITE_COMMON_ROOT}/api/v1/office_product/delete_office_product/${id}`,refetch);
+          if (response?.errorSources?.length >= 1) {
+            toast.error(response.message);
+            return;
+          }
+
+          showSuccessMessage(response.message);
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    } catch (error) {
+      if (error) {
+        return <ErrorPage message={error?.message} />;
+      }
+    }
   };
 
   const handelBooingPaymentModal = async (paymentData) => {

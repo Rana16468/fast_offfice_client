@@ -12,6 +12,7 @@ import {
   Shield,
   CheckCircle2,
   UserCircle,
+  Search,
 } from "lucide-react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import {
@@ -21,9 +22,12 @@ import {
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import PatchAction from "../../../CommonAction/PatchAction";
+
 const AllUsers = () => {
   const [page, setPage] = useState(1);
   const [isPageLoading, setIsPageLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState(null);
 
   const {
     data: allusers = [],
@@ -60,9 +64,31 @@ const AllUsers = () => {
     refetchOnMount: true,
     refetchOnReconnect: true,
   });
+
   useEffect(() => {
     refetch();
   }, [page, refetch]);
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      setFilteredUsers(null);
+      return;
+    }
+
+    const searchResults = allusers?.data?.result?.filter(user =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.districtName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setFilteredUsers(searchResults);
+  }, [searchTerm, allusers]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Search is already handled by the useEffect above
+  };
 
   const handlePageChange = async (newPage) => {
     setIsPageLoading(true);
@@ -105,9 +131,7 @@ const AllUsers = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const response = await PatchAction(
-            `${
-              import.meta.env.VITE_COMMON_ROOT
-            }/api/v1/auth/chnage_role_status/${userId}`,
+            `${import.meta.env.VITE_COMMON_ROOT}/api/v1/auth/chnage_role_status/${userId}`,
             { role: selectedValue },
             refetch
           );
@@ -128,14 +152,36 @@ const AllUsers = () => {
     }
   };
 
+  const displayedUsers = filteredUsers || allusers?.data?.result;
+
   return (
     <>
       <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden">
-        <div className="p-4 bg-gray-50 border-b flex items-center gap-2">
-          <Users className="w-5 h-5 text-gray-500" />
-          <h2 className="text-lg font-semibold text-gray-700">
-            User Management
-          </h2>
+        <div className="p-4 bg-gray-50 border-b">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <Users className="w-5 h-5 text-gray-500" />
+              <h2 className="text-lg font-semibold text-gray-700">
+                User Management
+              </h2>
+            </div>
+            
+            {/* Search Bar */}
+            <form onSubmit={handleSearch} className="relative max-w-md w-full">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search by name, email, role or location..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full px-4 py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-gray-400" />
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
 
         <div className="overflow-x-auto">
@@ -154,7 +200,6 @@ const AllUsers = () => {
                 <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
                   Location
                 </th>
-                {/* creationTime */}
                 <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
                   Creation Time
                 </th>
@@ -162,121 +207,118 @@ const AllUsers = () => {
                   Status
                 </th>
                 <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
-                  Chnage_Role
+                  Change Role
                 </th>
-
                 <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
-                  Delete_Account
+                  Delete Account
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {!isLoading &&
-                allusers?.success &&
-                allusers?.data?.result?.map((user) => (
-                  <tr key={user._id} className="hover:bg-gray-50">
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-3">
-                        {user.photo ? (
-                          <img
-                            src={user.photo}
-                            alt={user.name}
-                            className="w-10 h-10 rounded-full"
-                          />
-                        ) : (
-                          <UserCircle className="w-10 h-10 text-gray-400" />
-                        )}
-                        <div>
-                          <div className="font-medium text-gray-900">
-                            {user.name}
-                          </div>
-                          <div className="flex items-center gap-1 text-sm text-gray-500">
-                            <Mail className="w-4 h-4" />
-                            {user.email}
-                          </div>
+              {displayedUsers?.map((user) => (
+                <tr key={user._id} className="hover:bg-gray-50">
+                  {/* Rest of your existing table row code */}
+                  <td className="px-4 py-4">
+                    <div className="flex items-center gap-3">
+                      {user.photo ? (
+                        <img
+                          src={user.photo}
+                          alt={user.name}
+                          className="w-10 h-10 rounded-full"
+                        />
+                      ) : (
+                        <UserCircle className="w-10 h-10 text-gray-400" />
+                      )}
+                      <div>
+                        <div className="font-medium text-gray-900">
+                          {user.name}
+                        </div>
+                        <div className="flex items-center gap-1 text-sm text-gray-500">
+                          <Mail className="w-4 h-4" />
+                          {user.email}
                         </div>
                       </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${getRoleColor(
-                          user.role
-                        )}`}>
-                        {user.role}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-medium ${getRoleColor(
+                        user.role
+                      )}`}>
+                      {user.role}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4">
+                    <div className="text-sm text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <Monitor className="w-4 h-4" />
+                        {user.os} ({user.device})
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Chrome className="w-4 h-4" />
+                        {user.browser}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-4">
+                    <div className="flex items-center gap-1 text-sm text-gray-600">
+                      <MapPin className="w-4 h-4" />
+                      {user.districtName}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4">
+                    <div className="flex items-center gap-1 text-sm text-gray-600">
+                      <Calendar className="w-4 h-4" />
+                      {user.creationTime}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4">
+                    <select
+                      onChange={(event) => handleChange(event, user?._id)}
+                      className="select select-bordered w-full max-w-xs bg-white text-gray-700 font-medium shadow-md rounded-lg transition-transform transform hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                      <option disabled selected className="text-gray-400">
+                        Change Role?
+                      </option>
+                      <option
+                        value={import.meta.env.VITE_USER_ROLE}
+                        className="bg-gray-100 hover:bg-blue-100">
+                        {import.meta.env.VITE_USER_ROLE}
+                      </option>
+                      <option
+                        value={import.meta.env.VITE_ADMIN_ROLE}
+                        className="bg-gray-100 hover:bg-blue-100">
+                        {import.meta.env.VITE_ADMIN_ROLE}
+                      </option>
+                      <option
+                        value={import.meta.env.VITE_EMPLOYEE_ROLE}
+                        className="bg-gray-100 hover:bg-blue-100">
+                        {import.meta.env.VITE_EMPLOYEE_ROLE}
+                      </option>
+                    </select>
+                  </td>
+                  <td className="px-4 py-4">
+                    <div className="flex items-center gap-2">
+                      {user.isVerify ? (
+                        <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      ) : (
+                        <Shield className="w-5 h-5 text-yellow-500" />
+                      )}
+                      <span className="text-sm text-gray-600">
+                        {user.isVerify ? "Verified" : "Pending"}
                       </span>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="text-sm text-gray-600">
-                        <div className="flex items-center gap-1">
-                          <Monitor className="w-4 h-4" />
-                          {user.os} ({user.device})
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Chrome className="w-4 h-4" />
-                          {user.browser}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <MapPin className="w-4 h-4" />
-                        {user.districtName}
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <Calendar className="w-4 h-4" />
-                        {user.creationTime}
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <select
-                        onChange={(event) => handleChange(event, user?._id)}
-                        className="select select-bordered w-full max-w-xs bg-white text-gray-700 font-medium shadow-md rounded-lg transition-transform transform hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        <option disabled selected className="text-gray-400">
-                          Change Role?
-                        </option>
-                        <option
-                          value={import.meta.env.VITE_USER_ROLE}
-                          className="bg-gray-100 hover:bg-blue-100">
-                          {import.meta.env.VITE_USER_ROLE}
-                        </option>
-                        <option
-                          value={import.meta.env.VITE_ADMIN_ROLE}
-                          className="bg-gray-100 hover:bg-blue-100">
-                          {import.meta.env.VITE_ADMIN_ROLE}
-                        </option>
-                        <option
-                          value={import.meta.env.VITE_EMPLOYEE_ROLE}
-                          className="bg-gray-100 hover:bg-blue-100">
-                          {import.meta.env.VITE_EMPLOYEE_ROLE}
-                        </option>
-                      </select>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-2">
-                        {user.isVerify ? (
-                          <CheckCircle2 className="w-5 h-5 text-green-500" />
-                        ) : (
-                          <Shield className="w-5 h-5 text-yellow-500" />
-                        )}
-                        <span className="text-sm text-gray-600">
-                          {user.isVerify ? "Verified" : "Pending"}
-                        </span>
-                      </div>
-                    </td>
-                    {/* delete account */}
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-1 text-sm text-gray-600 ">
-                        <button
-                          onClick={() => handelDeleteUserAccount(user?._id)}
-                          className="btn btn-outline btn-sm btn-error rounded-md">
-                          <FaDeleteLeft className="text-xl " />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4">
+                    <div className="flex items-center gap-1 text-sm text-gray-600">
+                      <button
+                        onClick={() => handelDeleteUserAccount(user?._id)}
+                        className="btn btn-outline btn-sm btn-error rounded-md">
+                        <FaDeleteLeft className="text-xl" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
