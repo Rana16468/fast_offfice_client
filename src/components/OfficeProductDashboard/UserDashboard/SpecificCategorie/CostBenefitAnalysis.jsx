@@ -84,10 +84,12 @@ const CostBenefitAnalysis = () => {
       });
 
       if (CBR < 1) {
+        console.log("loss");
         const response = await PostAction(
           `${import.meta.env.VITE_COMMON_ROOT}/api/v1/office_categorie/ai_base_costbenefit_analysis`,
           { prompt: problemStatement }
         );
+        console.log(response);
 
         if (response?.errorSources?.length >= 1) {
           throw new Error(response.message);
