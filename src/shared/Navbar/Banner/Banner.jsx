@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   const images = [
-    "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?q=80&w=1905&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://www.qcdesignschool.com/blog/wp-content/uploads/2017/08/Design-Blog-In-Post-130x130-2019-09-16T111810.002.jpg",
     "https://plus.unsplash.com/premium_photo-1681487178876-a1156952ec60?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -19,7 +19,6 @@ const Banner = () => {
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Automatically change image every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((index) => (index + 1) % images.length);
